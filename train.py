@@ -2,16 +2,16 @@ import os
 import sys
 import random
 import yaml
+from datetime import datetime
 
 import torch
 from torch.utils.tensorboard import SummaryWriter
 import torch.optim as optim
-from pytorch_model_summary import summary
+from torchinfo import summary
 
 import model as jscc_models
-from criterion import *
 from utils import load_dataloaders, getUsableGPUs,\
-    progressMeter, logger_configuration, load_ckpt, save_ckpt, custom_arg_parsing
+    progressMeter, logger_configuration, load_ckpt, save_ckpt, custom_arg_parsing, QuadResJSCCLoss
 from setproctitle import setproctitle
 
 def train_epoch(epoch, dataloader, model, criterion, clip_max_norm, optimizer, writer, logger):
@@ -114,7 +114,7 @@ def main(argv):
     del cfg_model.type
     model = model_class(**cfg_model).cuda()
     H, W = cfg_model.img_shape
-    logger.info('SUMMARY:\n'+summary(model, torch.zeros((1, 3, H, W), device='cuda')))
+    logger.info('SUMMARY:\n'+str(summary(model, (1,3,H,W), depth=2,device='cuda', verbose=0)))
 
     # Criterion
     criterion = QuadResJSCCLoss(model=model,loss_type=config.loss_type)

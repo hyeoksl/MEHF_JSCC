@@ -1,16 +1,23 @@
-from pynvml_utils import nvidia_smi
+import pynvml
 
 __all__ = ['getUsableGPUs']
 
 def getUsableGPUs():
-    nvsmi = nvidia_smi.getInstance()
-    res_util_list = nvsmi.DeviceQuery("utilization.gpu, memory.used")["gpu"]
-    gpu_id = None
-    for i in [1, 2, 3, 0]:
-        mem_used = res_util_list[i]['fb_memory_usage']['used']
-        gpu_util = res_util_list[i]['utilization']['gpu_util']
-        if mem_used < 1000 and gpu_util == 0:
-            gpu_id = i
-            break
-    return gpu_id
-
+    pynvml.nvmlInit()
+    device_count = pynvml.nvmlDeviceGetCount()
+    
+    best_gpu_id = None
+    max_free_mem = 0
+    
+    for i in range(device_count):
+        handle = pynvml.nvmlDeviceGetHandleByIndex(i)
+        mem_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+        utilization = pynvml.nvmlDeviceGetUtilizationRates(handle)
+        
+        # GPU 사용률이 0이고, 가용 메모리가 가장 큰 GPU 탐색
+        if utilization.gpu == 0 and mem_info.free > max_free_mem:
+            max_free_mem = mem_info.free
+            best_gpu_id = i
+            
+    pynvml.nvmlShutdown()
+    return best_gpu_id

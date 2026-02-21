@@ -1,0 +1,6 @@
+python train.py --config_file configs/default.yaml --experiment_name ResNet --model.type ResNet --logging.save_dir logs/BASELINE
+python train.py --config_file configs/default.yaml --experiment_name ResNet --model.type ResNet_single --logging.save_dir logs/SINGLE
+python train.py --config_file configs/default.yaml --experiment_name ResNet --model.type ResNet_multi --logging.save_dir logs/MULTIEXTRACT
+#python train.py --config_file configs/default.yaml --experiment_name ConvNext --model.type ConvNext --logging.save_dir logs/BASELINE --dataset.train_batch_size 8 --dataset.valid_batch_size 16 --logging.pretrain_ckpt logs/BASELINE/ConvNext/latest_ckpt_ep288.pth.tar
+#python train.py --config_file configs/default.yaml --experiment_name ConvNext --model.type ConvNext_single --logging.save_dir logs/SINGLE --dataset.train_batch_size 12 --dataset.valid_batch_size 24
+#python train.py --config_file configs/default.yaml --experiment_name ConvNext --model.type ConvNext_multi --logging.save_dir logs/MULTIEXTRACT --dataset.train_batch_size 8 --dataset.valid_batch_size 16

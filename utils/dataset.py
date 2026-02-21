@@ -12,6 +12,7 @@ from torch.utils.data import DataLoader
 
 __all__ = ['loadData', 'load_dataloaders']
 
+DATA_ROOT = os.environ.get('DATASET_ROOT', '/datasets')
 
 class addContinuousNoise(object):
     def __init__(self, image_size, clip_range, quantization_step):
@@ -104,10 +105,7 @@ class indexedCodeCachedImageDataset(Dataset):
         try:
             image = self.jpeg.decode(img_bytes)
             image = Image.fromarray(image)
-            # Note:
-            # apt install libturbojpeg
-            # pip install pyturbojpeg
-        except:
+        except Exception as e: # 예외 구문 구체화
             image = Image.open(io.BytesIO(img_bytes))
             image = image.convert("RGB")
         
@@ -169,11 +167,12 @@ def loadSampleImage(data_config):
 
 
 def loadData(data_type):
+    # 하드코딩된 절대 경로 대신 os.path.join과 DATA_ROOT 사용
     dataset_configs = {
         'Kodak_images':{
             'load_fcn':loadDatasetImages,
             'num_images':24,
-            'root_dir':'/datasets/Kodak',
+            'root_dir': os.path.join(DATA_ROOT, 'Kodak'),
             'fname_format':'kodim{:02}.png'
         },
         'seolyoon':{
@@ -194,7 +193,7 @@ def loadData(data_type):
             'transform_type':'train',
             'patch_size':(256, 256),
             'num_images':8000,
-            'root_dir':'/datasets/ImageNet8000',
+            'root_dir': os.path.join(DATA_ROOT, 'ImageNet8000'),
             'fname_format':'img_{}.jpg',
         },
         'ImageNet_8000_224':{
@@ -203,7 +202,7 @@ def loadData(data_type):
             'transform_type':'train',
             'patch_size':(224, 224),
             'num_images':8000,
-            'root_dir':'/datasets/ImageNet8000',
+            'root_dir': os.path.join(DATA_ROOT, 'ImageNet8000'),
             'fname_format':'img_{}.jpg',
         },
         'ImageNet_mini':{
@@ -212,7 +211,7 @@ def loadData(data_type):
             'transform_type':'train',
             'patch_size':(256, 256),
             'num_images':100,
-            'root_dir':'/datasets/ImageNet8000',
+            'root_dir': os.path.join(DATA_ROOT, 'ImageNet8000'),
             'fname_format':'img_{}.jpg'
         },
         'Kodak':{
@@ -221,7 +220,7 @@ def loadData(data_type):
             'transform_type':'test',
             'patch_size':(256, 256),
             'num_images':24,
-            'root_dir':'/datasets/Kodak',
+            'root_dir': os.path.join(DATA_ROOT, 'Kodak'),
             'fname_format':'kodim{:02}.png'
         },
         'Kodak_rep':{
@@ -231,7 +230,7 @@ def loadData(data_type):
             'patch_size':(256, 256),
             'num_images_per_ds':24,
             'num_reps':20,
-            'root_dir':'/datasets/Kodak',
+            'root_dir': os.path.join(DATA_ROOT, 'Kodak'),
             'fname_format':'kodim{:02}.png'
         },
         'Kodak_valid':{
@@ -240,7 +239,7 @@ def loadData(data_type):
             'transform_type':'valid',
             'patch_size':(256, 256),
             'num_images':24,
-            'root_dir':'/datasets/Kodak',
+            'root_dir': os.path.join(DATA_ROOT, 'Kodak'),
             'fname_format':'kodim{:02}.png'
         },
     }
@@ -253,8 +252,6 @@ def loadData(data_type):
         raise KeyError(f"Key '{data_type}' does not exist! Try {', '.join(dataset_configs.keys())}")
     
     return data
-    
-
 
 def load_dataloaders(train_dataset, valid_dataset, train_batch_size, valid_batch_size, num_workers):
     train_ds = loadData(train_dataset) # ds refers to dataset
