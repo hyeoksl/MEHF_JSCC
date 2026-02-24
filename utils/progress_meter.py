@@ -17,9 +17,9 @@ class progressMeter:
         self.total_data_len = total_data_len
         
         if use_pbar:
-            # ncols를 제거하고 {bar:15}를 사용하여 막대 길이만 고정
+            # ncols를 제거하고 {bar:10}를 사용하여 막대 길이만 고정
             # 괄호 외부에 {postfix}를 배치하여 긴 지표 문자열이 잘리지 않도록 설정
-            custom_format = '{desc} {percentage:3.0f}%|{bar:15}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]{postfix}'
+            custom_format = '{desc} {percentage:3.0f}%|{bar:10}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}]{postfix}'
             self.pbar = tqdm(total=total_data_len, file=sys.stdout, desc=self.desc, bar_format=custom_format)
         
     def update(self, state_dict):

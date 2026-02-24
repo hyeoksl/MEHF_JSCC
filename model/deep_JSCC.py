@@ -143,7 +143,7 @@ class JSCC_Multi_Base(JSCC_Common):
         ys = []
         for i in range(self.min_chunks, self.F + 1):
             mask = torch.zeros((B, self.symbol_dim, 1, 1), device=x.device)
-            mask[:, :self.chunk_size, :, :] = 1.0
+            mask[:, :self.chunk_size*i, :, :] = 1.0
             ys.append(self.dejector((y_hat * mask).permute(0, 2, 3, 1)))# (N, C, H, W) -> (N, H, W, C)
 
         y_hats = torch.stack(ys, dim=0)
