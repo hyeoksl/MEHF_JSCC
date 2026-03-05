@@ -1,0 +1,1639 @@
+2026-03-04 23:29:25;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=True, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-04 23:29:27;INFO;SUMMARY:
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+ResNet_multi2                            [1, 3, 256, 256]          --
+├─Linear: 1-1                            [1, 8]                    24
+├─ModuleList: 1-9                        --                        (recursive)
+│    └─Conv2d: 2-1                       [1, 96, 128, 128]         2,688
+├─Conv2d: 1-3                            [1, 96, 128, 128]         10,080
+├─ModuleList: 1-10                       --                        (recursive)
+│    └─Sequential: 2-2                   [1, 96, 128, 128]         60,288
+├─ModuleList: 1-9                        --                        (recursive)
+│    └─Conv2d: 2-3                       [1, 96, 64, 64]           83,040
+│    └─Conv2d: 2-4                       [1, 96, 64, 64]           (recursive)
+├─ModuleList: 1-10                       --                        (recursive)
+│    └─Sequential: 2-5                   [1, 96, 64, 64]           60,288
+├─ModuleList: 1-9                        --                        (recursive)
+│    └─Conv2d: 2-6                       [1, 96, 32, 32]           83,040
+│    └─Conv2d: 2-7                       [1, 96, 32, 32]           (recursive)
+│    └─Conv2d: 2-8                       [1, 96, 32, 32]           (recursive)
+├─ModuleList: 1-10                       --                        (recursive)
+│    └─Sequential: 2-9                   [1, 96, 32, 32]           60,288
+├─ModuleList: 1-9                        --                        (recursive)
+│    └─Conv2d: 2-10                      [1, 96, 16, 16]           83,040
+│    └─Conv2d: 2-11                      [1, 96, 16, 16]           (recursive)
+│    └─Conv2d: 2-12                      [1, 96, 16, 16]           (recursive)
+│    └─Conv2d: 2-13                      [1, 96, 16, 16]           (recursive)
+├─ModuleList: 1-10                       --                        (recursive)
+│    └─Sequential: 2-14                  [1, 96, 16, 16]           60,288
+├─Conv2d: 1-11                           [1, 264, 16, 16]          101,640
+├─AWGNChannel: 1-12                      [1, 12288]                --
+├─Conv2d: 1-13                           [1, 384, 16, 16]          104,832
+├─ModuleList: 1-20                       --                        (recursive)
+│    └─Sequential: 2-15                  [1, 96, 16, 16]           78,816
+├─ModuleList: 1-21                       --                        (recursive)
+│    └─ConvTranspose2d: 2-16             [1, 96, 32, 32]           83,040
+│    └─ConvTranspose2d: 2-17             [1, 96, 32, 32]           (recursive)
+│    └─ConvTranspose2d: 2-18             [1, 96, 32, 32]           (recursive)
+│    └─ConvTranspose2d: 2-19             [1, 96, 32, 32]           (recursive)
+├─ModuleList: 1-20                       --                        (recursive)
+│    └─Sequential: 2-20                  [1, 96, 32, 32]           78,816
+├─ModuleList: 1-21                       --                        (recursive)
+│    └─ConvTranspose2d: 2-21             [1, 96, 64, 64]           83,040
+│    └─ConvTranspose2d: 2-22             [1, 96, 64, 64]           (recursive)
+│    └─ConvTranspose2d: 2-23             [1, 96, 64, 64]           (recursive)
+├─ModuleList: 1-20                       --                        (recursive)
+│    └─Sequential: 2-24                  [1, 96, 64, 64]           78,816
+├─ModuleList: 1-21                       --                        (recursive)
+│    └─ConvTranspose2d: 2-25             [1, 96, 128, 128]         83,040
+│    └─ConvTranspose2d: 2-26             [1, 96, 128, 128]         (recursive)
+├─ModuleList: 1-20                       --                        (recursive)
+│    └─Sequential: 2-27                  [1, 96, 128, 128]         78,816
+├─ModuleList: 1-21                       --                        (recursive)
+│    └─ConvTranspose2d: 2-28             [1, 3, 256, 256]          2,595
+==========================================================================================
+Total params: 1,276,515
+Trainable params: 1,276,515
+Non-trainable params: 0
+Total mult-adds (Units.GIGABYTES): 8.56
+==========================================================================================
+Input size (MB): 0.79
+Forward/backward pass size (MB): 225.66
+Params size (MB): 5.11
+Estimated Total Size (MB): 231.55
+==========================================================================================
+2026-03-04 23:29:31;INFO;Number of dataset | train : 8000, valid : 480
+2026-03-04 23:29:31;INFO;Training from scratch...
+2026-03-04 23:29:31;INFO;Learning rate change: None -> 0.0001
+2026-03-04 23:30:04;DEBUG;Epoch Summary|Epoch 0 | train: (8000/8000)MSE: 0.14750|loss: 0.14750|PSNR: 8.51379
+2026-03-04 23:30:10;DEBUG;Epoch Summary|Epoch 0 | valid: ( 479/ 480)MSE: 0.08566|loss: 0.08566|PSNR: 10.68473
+2026-03-04 23:30:10;INFO;Saved latest model in epoch : 0
+2026-03-04 23:30:10;INFO;Saved best model in epoch : 0
+2026-03-04 23:30:38;DEBUG;Epoch Summary|Epoch 1 | train: (8000/8000)MSE: 0.06000|loss: 0.06000|PSNR: 12.32627
+2026-03-04 23:30:41;DEBUG;Epoch Summary|Epoch 1 | valid: ( 479/ 480)MSE: 0.04145|loss: 0.04145|PSNR: 13.84247
+2026-03-04 23:30:41;INFO;Saved latest model in epoch : 1
+2026-03-04 23:30:41;INFO;Saved best model in epoch : 1
+2026-03-04 23:31:09;DEBUG;Epoch Summary|Epoch 2 | train: (8000/8000)MSE: 0.05482|loss: 0.05482|PSNR: 12.70032
+2026-03-04 23:31:12;DEBUG;Epoch Summary|Epoch 2 | valid: ( 479/ 480)MSE: 0.04075|loss: 0.04075|PSNR: 13.91915
+2026-03-04 23:31:12;INFO;Saved latest model in epoch : 2
+2026-03-04 23:31:12;INFO;Saved best model in epoch : 2
+2026-03-04 23:31:40;DEBUG;Epoch Summary|Epoch 3 | train: (8000/8000)MSE: 0.05446|loss: 0.05446|PSNR: 12.73174
+2026-03-04 23:31:43;DEBUG;Epoch Summary|Epoch 3 | valid: ( 479/ 480)MSE: 0.04014|loss: 0.04014|PSNR: 13.98734
+2026-03-04 23:31:43;INFO;Saved latest model in epoch : 3
+2026-03-04 23:31:43;INFO;Saved best model in epoch : 3
+2026-03-04 23:32:11;DEBUG;Epoch Summary|Epoch 4 | train: (8000/8000)MSE: 0.05280|loss: 0.05280|PSNR: 12.86745
+2026-03-04 23:32:14;DEBUG;Epoch Summary|Epoch 4 | valid: ( 479/ 480)MSE: 0.03884|loss: 0.03884|PSNR: 14.12693
+2026-03-04 23:32:14;INFO;Saved latest model in epoch : 4
+2026-03-04 23:32:14;INFO;Saved best model in epoch : 4
+2026-03-04 23:32:43;DEBUG;Epoch Summary|Epoch 5 | train: (8000/8000)MSE: 0.05256|loss: 0.05256|PSNR: 12.88225
+2026-03-04 23:32:46;DEBUG;Epoch Summary|Epoch 5 | valid: ( 479/ 480)MSE: 0.03889|loss: 0.03889|PSNR: 14.12152
+2026-03-04 23:32:46;INFO;Saved latest model in epoch : 5
+2026-03-04 23:33:16;DEBUG;Epoch Summary|Epoch 6 | train: (8000/8000)MSE: 0.05108|loss: 0.05108|PSNR: 13.05541
+2026-03-04 23:33:19;DEBUG;Epoch Summary|Epoch 6 | valid: ( 479/ 480)MSE: 0.01863|loss: 0.01863|PSNR: 17.30942
+2026-03-04 23:33:19;INFO;Saved latest model in epoch : 6
+2026-03-04 23:33:19;INFO;Saved best model in epoch : 6
+2026-03-04 23:33:48;DEBUG;Epoch Summary|Epoch 7 | train: (8000/8000)MSE: 0.02861|loss: 0.02861|PSNR: 15.51928
+2026-03-04 23:33:50;DEBUG;Epoch Summary|Epoch 7 | valid: ( 479/ 480)MSE: 0.01880|loss: 0.01880|PSNR: 17.27441
+2026-03-04 23:33:50;INFO;Saved latest model in epoch : 7
+2026-03-04 23:34:20;DEBUG;Epoch Summary|Epoch 8 | train: (8000/8000)MSE: 0.02843|loss: 0.02843|PSNR: 15.55197
+2026-03-04 23:34:22;DEBUG;Epoch Summary|Epoch 8 | valid: ( 479/ 480)MSE: 0.01851|loss: 0.01851|PSNR: 17.34246
+2026-03-04 23:34:22;INFO;Saved latest model in epoch : 8
+2026-03-04 23:34:22;INFO;Saved best model in epoch : 8
+2026-03-04 23:34:52;DEBUG;Epoch Summary|Epoch 9 | train: (8000/8000)MSE: 0.02822|loss: 0.02822|PSNR: 15.60373
+2026-03-04 23:34:55;DEBUG;Epoch Summary|Epoch 9 | valid: ( 479/ 480)MSE: 0.01886|loss: 0.01886|PSNR: 17.25747
+2026-03-04 23:34:55;INFO;Saved latest model in epoch : 9
+2026-03-04 23:35:24;DEBUG;Epoch Summary|Epoch 10 | train: (8000/8000)MSE: 0.02832|loss: 0.02832|PSNR: 15.56747
+2026-03-04 23:35:27;DEBUG;Epoch Summary|Epoch 10 | valid: ( 479/ 480)MSE: 0.01810|loss: 0.01810|PSNR: 17.44198
+2026-03-04 23:35:27;INFO;Saved latest model in epoch : 10
+2026-03-04 23:35:27;INFO;Saved best model in epoch : 10
+2026-03-04 23:35:57;DEBUG;Epoch Summary|Epoch 11 | train: (8000/8000)MSE: 0.02844|loss: 0.02844|PSNR: 15.55611
+2026-03-04 23:35:59;DEBUG;Epoch Summary|Epoch 11 | valid: ( 479/ 480)MSE: 0.01779|loss: 0.01779|PSNR: 17.52207
+2026-03-04 23:35:59;INFO;Saved latest model in epoch : 11
+2026-03-04 23:35:59;INFO;Saved best model in epoch : 11
+2026-03-04 23:36:30;DEBUG;Epoch Summary|Epoch 12 | train: (8000/8000)MSE: 0.02798|loss: 0.02798|PSNR: 15.63373
+2026-03-04 23:36:32;DEBUG;Epoch Summary|Epoch 12 | valid: ( 479/ 480)MSE: 0.01755|loss: 0.01755|PSNR: 17.57681
+2026-03-04 23:36:32;INFO;Saved latest model in epoch : 12
+2026-03-04 23:36:32;INFO;Saved best model in epoch : 12
+2026-03-04 23:37:02;DEBUG;Epoch Summary|Epoch 13 | train: (8000/8000)MSE: 0.02795|loss: 0.02795|PSNR: 15.63102
+2026-03-04 23:37:05;DEBUG;Epoch Summary|Epoch 13 | valid: ( 479/ 480)MSE: 0.01752|loss: 0.01752|PSNR: 17.58474
+2026-03-04 23:37:05;INFO;Saved latest model in epoch : 13
+2026-03-04 23:37:05;INFO;Saved best model in epoch : 13
+2026-03-04 23:37:38;DEBUG;Epoch Summary|Epoch 14 | train: (8000/8000)MSE: 0.02790|loss: 0.02790|PSNR: 15.63737
+2026-03-04 23:37:40;DEBUG;Epoch Summary|Epoch 14 | valid: ( 479/ 480)MSE: 0.01764|loss: 0.01764|PSNR: 17.56386
+2026-03-04 23:37:40;INFO;Saved latest model in epoch : 14
+2026-03-04 23:38:11;DEBUG;Epoch Summary|Epoch 15 | train: (8000/8000)MSE: 0.02783|loss: 0.02783|PSNR: 15.64673
+2026-03-04 23:38:14;DEBUG;Epoch Summary|Epoch 15 | valid: ( 479/ 480)MSE: 0.01759|loss: 0.01759|PSNR: 17.56768
+2026-03-04 23:38:14;INFO;Saved latest model in epoch : 15
+2026-03-04 23:38:43;DEBUG;Epoch Summary|Epoch 16 | train: (8000/8000)MSE: 0.02777|loss: 0.02777|PSNR: 15.66709
+2026-03-04 23:38:46;DEBUG;Epoch Summary|Epoch 16 | valid: ( 479/ 480)MSE: 0.01722|loss: 0.01722|PSNR: 17.65233
+2026-03-04 23:38:46;INFO;Saved latest model in epoch : 16
+2026-03-04 23:38:46;INFO;Saved best model in epoch : 16
+2026-03-04 23:39:17;DEBUG;Epoch Summary|Epoch 17 | train: (8000/8000)MSE: 0.02767|loss: 0.02767|PSNR: 15.68148
+2026-03-04 23:39:19;DEBUG;Epoch Summary|Epoch 17 | valid: ( 479/ 480)MSE: 0.01726|loss: 0.01726|PSNR: 17.64720
+2026-03-04 23:39:19;INFO;Saved latest model in epoch : 17
+2026-03-04 23:39:49;DEBUG;Epoch Summary|Epoch 18 | train: (8000/8000)MSE: 0.02768|loss: 0.02768|PSNR: 15.68132
+2026-03-04 23:39:52;DEBUG;Epoch Summary|Epoch 18 | valid: ( 479/ 480)MSE: 0.01657|loss: 0.01657|PSNR: 17.82400
+2026-03-04 23:39:52;INFO;Saved latest model in epoch : 18
+2026-03-04 23:39:52;INFO;Saved best model in epoch : 18
+2026-03-04 23:40:23;DEBUG;Epoch Summary|Epoch 19 | train: (8000/8000)MSE: 0.02787|loss: 0.02787|PSNR: 15.64410
+2026-03-04 23:40:25;DEBUG;Epoch Summary|Epoch 19 | valid: ( 479/ 480)MSE: 0.01750|loss: 0.01750|PSNR: 17.60126
+2026-03-04 23:40:25;INFO;Saved latest model in epoch : 19
+2026-03-04 23:40:56;DEBUG;Epoch Summary|Epoch 20 | train: (8000/8000)MSE: 0.02756|loss: 0.02756|PSNR: 15.70015
+2026-03-04 23:40:58;DEBUG;Epoch Summary|Epoch 20 | valid: ( 479/ 480)MSE: 0.01683|loss: 0.01683|PSNR: 17.76423
+2026-03-04 23:40:58;INFO;Saved latest model in epoch : 20
+2026-03-04 23:41:28;DEBUG;Epoch Summary|Epoch 21 | train: (8000/8000)MSE: 0.02751|loss: 0.02751|PSNR: 15.71268
+2026-03-04 23:41:31;DEBUG;Epoch Summary|Epoch 21 | valid: ( 479/ 480)MSE: 0.01745|loss: 0.01745|PSNR: 17.61269
+2026-03-04 23:41:31;INFO;Saved latest model in epoch : 21
+2026-03-04 23:42:00;DEBUG;Epoch Summary|Epoch 22 | train: (8000/8000)MSE: 0.02775|loss: 0.02775|PSNR: 15.67831
+2026-03-04 23:42:03;DEBUG;Epoch Summary|Epoch 22 | valid: ( 479/ 480)MSE: 0.01693|loss: 0.01693|PSNR: 17.74146
+2026-03-04 23:42:03;INFO;Saved latest model in epoch : 22
+2026-03-04 23:42:34;DEBUG;Epoch Summary|Epoch 23 | train: (8000/8000)MSE: 0.02736|loss: 0.02736|PSNR: 15.72995
+2026-03-04 23:42:36;DEBUG;Epoch Summary|Epoch 23 | valid: ( 479/ 480)MSE: 0.01703|loss: 0.01703|PSNR: 17.70820
+2026-03-04 23:42:36;INFO;Saved latest model in epoch : 23
+2026-03-04 23:43:06;DEBUG;Epoch Summary|Epoch 24 | train: (8000/8000)MSE: 0.02737|loss: 0.02737|PSNR: 15.72672
+2026-03-04 23:43:08;DEBUG;Epoch Summary|Epoch 24 | valid: ( 479/ 480)MSE: 0.01664|loss: 0.01664|PSNR: 17.80354
+2026-03-04 23:43:08;INFO;Saved latest model in epoch : 24
+2026-03-04 23:43:39;DEBUG;Epoch Summary|Epoch 25 | train: (8000/8000)MSE: 0.02720|loss: 0.02720|PSNR: 15.75027
+2026-03-04 23:43:41;DEBUG;Epoch Summary|Epoch 25 | valid: ( 479/ 480)MSE: 0.01638|loss: 0.01638|PSNR: 17.88192
+2026-03-04 23:43:41;INFO;Saved latest model in epoch : 25
+2026-03-04 23:43:41;INFO;Saved best model in epoch : 25
+2026-03-04 23:44:13;DEBUG;Epoch Summary|Epoch 26 | train: (8000/8000)MSE: 0.02760|loss: 0.02760|PSNR: 15.69290
+2026-03-04 23:44:16;DEBUG;Epoch Summary|Epoch 26 | valid: ( 479/ 480)MSE: 0.01608|loss: 0.01608|PSNR: 17.96057
+2026-03-04 23:44:16;INFO;Saved latest model in epoch : 26
+2026-03-04 23:44:16;INFO;Saved best model in epoch : 26
+2026-03-04 23:44:47;DEBUG;Epoch Summary|Epoch 27 | train: (8000/8000)MSE: 0.02726|loss: 0.02726|PSNR: 15.74474
+2026-03-04 23:44:50;DEBUG;Epoch Summary|Epoch 27 | valid: ( 479/ 480)MSE: 0.01685|loss: 0.01685|PSNR: 17.75800
+2026-03-04 23:44:50;INFO;Saved latest model in epoch : 27
+2026-03-04 23:45:20;DEBUG;Epoch Summary|Epoch 28 | train: (8000/8000)MSE: 0.02743|loss: 0.02743|PSNR: 15.71760
+2026-03-04 23:45:22;DEBUG;Epoch Summary|Epoch 28 | valid: ( 479/ 480)MSE: 0.01645|loss: 0.01645|PSNR: 17.86072
+2026-03-04 23:45:22;INFO;Saved latest model in epoch : 28
+2026-03-04 23:45:51;DEBUG;Epoch Summary|Epoch 29 | train: (8000/8000)MSE: 0.02703|loss: 0.02703|PSNR: 15.78621
+2026-03-04 23:45:54;DEBUG;Epoch Summary|Epoch 29 | valid: ( 479/ 480)MSE: 0.01673|loss: 0.01673|PSNR: 17.78182
+2026-03-04 23:45:54;INFO;Saved latest model in epoch : 29
+2026-03-04 23:46:23;DEBUG;Epoch Summary|Epoch 30 | train: (8000/8000)MSE: 0.02738|loss: 0.02738|PSNR: 15.73043
+2026-03-04 23:46:25;DEBUG;Epoch Summary|Epoch 30 | valid: ( 479/ 480)MSE: 0.01657|loss: 0.01657|PSNR: 17.82958
+2026-03-04 23:46:25;INFO;Saved latest model in epoch : 30
+2026-03-04 23:46:55;DEBUG;Epoch Summary|Epoch 31 | train: (8000/8000)MSE: 0.02717|loss: 0.02717|PSNR: 15.76206
+2026-03-04 23:46:58;DEBUG;Epoch Summary|Epoch 31 | valid: ( 479/ 480)MSE: 0.01638|loss: 0.01638|PSNR: 17.89074
+2026-03-04 23:46:58;INFO;Saved latest model in epoch : 31
+2026-03-04 23:47:26;DEBUG;Epoch Summary|Epoch 32 | train: (8000/8000)MSE: 0.02710|loss: 0.02710|PSNR: 15.77681
+2026-03-04 23:47:29;DEBUG;Epoch Summary|Epoch 32 | valid: ( 479/ 480)MSE: 0.01629|loss: 0.01629|PSNR: 17.89727
+2026-03-04 23:47:29;INFO;Saved latest model in epoch : 32
+2026-03-04 23:47:58;DEBUG;Epoch Summary|Epoch 33 | train: (8000/8000)MSE: 0.02739|loss: 0.02739|PSNR: 15.72251
+2026-03-04 23:48:00;DEBUG;Epoch Summary|Epoch 33 | valid: ( 479/ 480)MSE: 0.01654|loss: 0.01654|PSNR: 17.83584
+2026-03-04 23:48:00;INFO;Saved latest model in epoch : 33
+2026-03-04 23:48:30;DEBUG;Epoch Summary|Epoch 34 | train: (8000/8000)MSE: 0.02722|loss: 0.02722|PSNR: 15.75557
+2026-03-04 23:48:33;DEBUG;Epoch Summary|Epoch 34 | valid: ( 479/ 480)MSE: 0.01660|loss: 0.01660|PSNR: 17.84209
+2026-03-04 23:48:33;INFO;Saved latest model in epoch : 34
+2026-03-04 23:49:02;DEBUG;Epoch Summary|Epoch 35 | train: (8000/8000)MSE: 0.02734|loss: 0.02734|PSNR: 15.73216
+2026-03-04 23:49:04;DEBUG;Epoch Summary|Epoch 35 | valid: ( 479/ 480)MSE: 0.01632|loss: 0.01632|PSNR: 17.90641
+2026-03-04 23:49:04;INFO;Saved latest model in epoch : 35
+2026-03-04 23:49:33;DEBUG;Epoch Summary|Epoch 36 | train: (8000/8000)MSE: 0.02758|loss: 0.02758|PSNR: 15.69099
+2026-03-04 23:49:36;DEBUG;Epoch Summary|Epoch 36 | valid: ( 479/ 480)MSE: 0.01690|loss: 0.01690|PSNR: 17.74367
+2026-03-04 23:49:36;INFO;Saved latest model in epoch : 36
+2026-03-04 23:50:06;DEBUG;Epoch Summary|Epoch 37 | train: (8000/8000)MSE: 0.02741|loss: 0.02741|PSNR: 15.72215
+2026-03-04 23:50:08;DEBUG;Epoch Summary|Epoch 37 | valid: ( 479/ 480)MSE: 0.01633|loss: 0.01633|PSNR: 17.89892
+2026-03-04 23:50:08;INFO;Saved latest model in epoch : 37
+2026-03-04 23:50:38;DEBUG;Epoch Summary|Epoch 38 | train: (8000/8000)MSE: 0.02737|loss: 0.02737|PSNR: 15.72659
+2026-03-04 23:50:41;DEBUG;Epoch Summary|Epoch 38 | valid: ( 479/ 480)MSE: 0.01678|loss: 0.01678|PSNR: 17.77470
+2026-03-04 23:50:41;INFO;Saved latest model in epoch : 38
+2026-03-04 23:51:11;DEBUG;Epoch Summary|Epoch 39 | train: (8000/8000)MSE: 0.02732|loss: 0.02732|PSNR: 15.74421
+2026-03-04 23:51:13;DEBUG;Epoch Summary|Epoch 39 | valid: ( 479/ 480)MSE: 0.01637|loss: 0.01637|PSNR: 17.88819
+2026-03-04 23:51:13;INFO;Saved latest model in epoch : 39
+2026-03-04 23:51:42;DEBUG;Epoch Summary|Epoch 40 | train: (8000/8000)MSE: 0.02720|loss: 0.02720|PSNR: 15.75416
+2026-03-04 23:51:45;DEBUG;Epoch Summary|Epoch 40 | valid: ( 479/ 480)MSE: 0.01663|loss: 0.01663|PSNR: 17.81059
+2026-03-04 23:51:45;INFO;Saved latest model in epoch : 40
+2026-03-04 23:52:16;DEBUG;Epoch Summary|Epoch 41 | train: (8000/8000)MSE: 0.02728|loss: 0.02728|PSNR: 15.74821
+2026-03-04 23:52:18;DEBUG;Epoch Summary|Epoch 41 | valid: ( 479/ 480)MSE: 0.01638|loss: 0.01638|PSNR: 17.88527
+2026-03-04 23:52:18;INFO;Saved latest model in epoch : 41
+2026-03-04 23:52:49;DEBUG;Epoch Summary|Epoch 42 | train: (8000/8000)MSE: 0.02717|loss: 0.02717|PSNR: 15.76332
+2026-03-04 23:52:51;DEBUG;Epoch Summary|Epoch 42 | valid: ( 479/ 480)MSE: 0.01611|loss: 0.01611|PSNR: 17.94853
+2026-03-04 23:52:51;INFO;Saved latest model in epoch : 42
+2026-03-04 23:53:20;DEBUG;Epoch Summary|Epoch 43 | train: (8000/8000)MSE: 0.02710|loss: 0.02710|PSNR: 15.77360
+2026-03-04 23:53:23;DEBUG;Epoch Summary|Epoch 43 | valid: ( 479/ 480)MSE: 0.01601|loss: 0.01601|PSNR: 17.98137
+2026-03-04 23:53:23;INFO;Saved latest model in epoch : 43
+2026-03-04 23:53:23;INFO;Saved best model in epoch : 43
+2026-03-04 23:53:53;DEBUG;Epoch Summary|Epoch 44 | train: (8000/8000)MSE: 0.02730|loss: 0.02730|PSNR: 15.74167
+2026-03-04 23:53:55;DEBUG;Epoch Summary|Epoch 44 | valid: ( 479/ 480)MSE: 0.01642|loss: 0.01642|PSNR: 17.86947
+2026-03-04 23:53:55;INFO;Saved latest model in epoch : 44
+2026-03-04 23:54:26;DEBUG;Epoch Summary|Epoch 45 | train: (8000/8000)MSE: 0.02731|loss: 0.02731|PSNR: 15.73405
+2026-03-04 23:54:28;DEBUG;Epoch Summary|Epoch 45 | valid: ( 479/ 480)MSE: 0.01603|loss: 0.01603|PSNR: 17.97238
+2026-03-04 23:54:28;INFO;Saved latest model in epoch : 45
+2026-03-04 23:54:58;DEBUG;Epoch Summary|Epoch 46 | train: (8000/8000)MSE: 0.02722|loss: 0.02722|PSNR: 15.74805
+2026-03-04 23:55:01;DEBUG;Epoch Summary|Epoch 46 | valid: ( 479/ 480)MSE: 0.01627|loss: 0.01627|PSNR: 17.91139
+2026-03-04 23:55:01;INFO;Saved latest model in epoch : 46
+2026-03-04 23:55:31;DEBUG;Epoch Summary|Epoch 47 | train: (8000/8000)MSE: 0.02686|loss: 0.02686|PSNR: 15.81256
+2026-03-04 23:55:34;DEBUG;Epoch Summary|Epoch 47 | valid: ( 479/ 480)MSE: 0.01610|loss: 0.01610|PSNR: 17.96087
+2026-03-04 23:55:34;INFO;Saved latest model in epoch : 47
+2026-03-04 23:56:03;DEBUG;Epoch Summary|Epoch 48 | train: (8000/8000)MSE: 0.02702|loss: 0.02702|PSNR: 15.78103
+2026-03-04 23:56:06;DEBUG;Epoch Summary|Epoch 48 | valid: ( 479/ 480)MSE: 0.01595|loss: 0.01595|PSNR: 18.00459
+2026-03-04 23:56:06;INFO;Saved latest model in epoch : 48
+2026-03-04 23:56:06;INFO;Saved best model in epoch : 48
+2026-03-04 23:56:36;DEBUG;Epoch Summary|Epoch 49 | train: (8000/8000)MSE: 0.02710|loss: 0.02710|PSNR: 15.77015
+2026-03-04 23:56:38;DEBUG;Epoch Summary|Epoch 49 | valid: ( 479/ 480)MSE: 0.01609|loss: 0.01609|PSNR: 17.96302
+2026-03-04 23:56:38;INFO;Saved latest model in epoch : 49
+2026-03-04 23:56:39;INFO;Saved model milestone in epoch : 49
+2026-03-04 23:57:09;DEBUG;Epoch Summary|Epoch 50 | train: (8000/8000)MSE: 0.02709|loss: 0.02709|PSNR: 15.77645
+2026-03-04 23:57:11;DEBUG;Epoch Summary|Epoch 50 | valid: ( 479/ 480)MSE: 0.01635|loss: 0.01635|PSNR: 17.89690
+2026-03-04 23:57:11;INFO;Saved latest model in epoch : 50
+2026-03-04 23:57:41;DEBUG;Epoch Summary|Epoch 51 | train: (8000/8000)MSE: 0.02718|loss: 0.02718|PSNR: 15.75608
+2026-03-04 23:57:43;DEBUG;Epoch Summary|Epoch 51 | valid: ( 479/ 480)MSE: 0.01615|loss: 0.01615|PSNR: 17.93847
+2026-03-04 23:57:43;INFO;Saved latest model in epoch : 51
+2026-03-04 23:58:13;DEBUG;Epoch Summary|Epoch 52 | train: (8000/8000)MSE: 0.02680|loss: 0.02680|PSNR: 15.82230
+2026-03-04 23:58:15;DEBUG;Epoch Summary|Epoch 52 | valid: ( 479/ 480)MSE: 0.01643|loss: 0.01643|PSNR: 17.87144
+2026-03-04 23:58:15;INFO;Saved latest model in epoch : 52
+2026-03-04 23:58:46;DEBUG;Epoch Summary|Epoch 53 | train: (8000/8000)MSE: 0.02721|loss: 0.02721|PSNR: 15.76350
+2026-03-04 23:58:48;DEBUG;Epoch Summary|Epoch 53 | valid: ( 479/ 480)MSE: 0.01587|loss: 0.01587|PSNR: 18.02604
+2026-03-04 23:58:48;INFO;Saved latest model in epoch : 53
+2026-03-04 23:58:48;INFO;Saved best model in epoch : 53
+2026-03-04 23:59:19;DEBUG;Epoch Summary|Epoch 54 | train: (8000/8000)MSE: 0.02684|loss: 0.02684|PSNR: 15.82471
+2026-03-04 23:59:21;DEBUG;Epoch Summary|Epoch 54 | valid: ( 479/ 480)MSE: 0.01615|loss: 0.01615|PSNR: 17.93971
+2026-03-04 23:59:22;INFO;Saved latest model in epoch : 54
+2026-03-04 23:59:52;DEBUG;Epoch Summary|Epoch 55 | train: (8000/8000)MSE: 0.02702|loss: 0.02702|PSNR: 15.78641
+2026-03-04 23:59:55;DEBUG;Epoch Summary|Epoch 55 | valid: ( 479/ 480)MSE: 0.01619|loss: 0.01619|PSNR: 17.92836
+2026-03-04 23:59:55;INFO;Saved latest model in epoch : 55
+2026-03-05 00:00:24;DEBUG;Epoch Summary|Epoch 56 | train: (8000/8000)MSE: 0.02704|loss: 0.02704|PSNR: 15.78141
+2026-03-05 00:00:27;DEBUG;Epoch Summary|Epoch 56 | valid: ( 479/ 480)MSE: 0.01620|loss: 0.01620|PSNR: 17.93209
+2026-03-05 00:00:27;INFO;Saved latest model in epoch : 56
+2026-03-05 00:00:58;DEBUG;Epoch Summary|Epoch 57 | train: (8000/8000)MSE: 0.02696|loss: 0.02696|PSNR: 15.80335
+2026-03-05 00:01:00;DEBUG;Epoch Summary|Epoch 57 | valid: ( 479/ 480)MSE: 0.01578|loss: 0.01578|PSNR: 18.05744
+2026-03-05 00:01:00;INFO;Saved latest model in epoch : 57
+2026-03-05 00:01:00;INFO;Saved best model in epoch : 57
+2026-03-05 00:01:29;DEBUG;Epoch Summary|Epoch 58 | train: (8000/8000)MSE: 0.02693|loss: 0.02693|PSNR: 15.79670
+2026-03-05 00:01:32;DEBUG;Epoch Summary|Epoch 58 | valid: ( 479/ 480)MSE: 0.01591|loss: 0.01591|PSNR: 18.00095
+2026-03-05 00:01:32;INFO;Saved latest model in epoch : 58
+2026-03-05 00:02:02;DEBUG;Epoch Summary|Epoch 59 | train: (8000/8000)MSE: 0.02676|loss: 0.02676|PSNR: 15.82860
+2026-03-05 00:02:05;DEBUG;Epoch Summary|Epoch 59 | valid: ( 479/ 480)MSE: 0.01545|loss: 0.01545|PSNR: 18.13522
+2026-03-05 00:02:05;INFO;Saved latest model in epoch : 59
+2026-03-05 00:02:05;INFO;Saved best model in epoch : 59
+2026-03-05 00:02:35;DEBUG;Epoch Summary|Epoch 60 | train: (8000/8000)MSE: 0.02702|loss: 0.02702|PSNR: 15.79355
+2026-03-05 00:02:38;DEBUG;Epoch Summary|Epoch 60 | valid: ( 479/ 480)MSE: 0.01603|loss: 0.01603|PSNR: 17.98973
+2026-03-05 00:02:38;INFO;Saved latest model in epoch : 60
+2026-03-05 00:03:08;DEBUG;Epoch Summary|Epoch 61 | train: (8000/8000)MSE: 0.02733|loss: 0.02733|PSNR: 15.73467
+2026-03-05 00:03:11;DEBUG;Epoch Summary|Epoch 61 | valid: ( 479/ 480)MSE: 0.01564|loss: 0.01564|PSNR: 18.07590
+2026-03-05 00:03:11;INFO;Saved latest model in epoch : 61
+2026-03-05 00:03:41;DEBUG;Epoch Summary|Epoch 62 | train: (8000/8000)MSE: 0.02711|loss: 0.02711|PSNR: 15.78213
+2026-03-05 00:03:44;DEBUG;Epoch Summary|Epoch 62 | valid: ( 479/ 480)MSE: 0.01597|loss: 0.01597|PSNR: 18.00988
+2026-03-05 00:03:44;INFO;Saved latest model in epoch : 62
+2026-03-05 00:04:14;DEBUG;Epoch Summary|Epoch 63 | train: (8000/8000)MSE: 0.02690|loss: 0.02690|PSNR: 15.80242
+2026-03-05 00:04:17;DEBUG;Epoch Summary|Epoch 63 | valid: ( 479/ 480)MSE: 0.01597|loss: 0.01597|PSNR: 17.98751
+2026-03-05 00:04:17;INFO;Saved latest model in epoch : 63
+2026-03-05 00:04:46;DEBUG;Epoch Summary|Epoch 64 | train: (8000/8000)MSE: 0.02684|loss: 0.02684|PSNR: 15.81682
+2026-03-05 00:04:49;DEBUG;Epoch Summary|Epoch 64 | valid: ( 479/ 480)MSE: 0.01581|loss: 0.01581|PSNR: 18.04174
+2026-03-05 00:04:49;INFO;Saved latest model in epoch : 64
+2026-03-05 00:05:19;DEBUG;Epoch Summary|Epoch 65 | train: (8000/8000)MSE: 0.02694|loss: 0.02694|PSNR: 15.80194
+2026-03-05 00:05:22;DEBUG;Epoch Summary|Epoch 65 | valid: ( 479/ 480)MSE: 0.01596|loss: 0.01596|PSNR: 17.99638
+2026-03-05 00:05:22;INFO;Saved latest model in epoch : 65
+2026-03-05 00:05:52;DEBUG;Epoch Summary|Epoch 66 | train: (8000/8000)MSE: 0.02673|loss: 0.02673|PSNR: 15.82998
+2026-03-05 00:05:55;DEBUG;Epoch Summary|Epoch 66 | valid: ( 479/ 480)MSE: 0.01593|loss: 0.01593|PSNR: 18.02246
+2026-03-05 00:05:55;INFO;Saved latest model in epoch : 66
+2026-03-05 00:06:26;DEBUG;Epoch Summary|Epoch 67 | train: (8000/8000)MSE: 0.02716|loss: 0.02716|PSNR: 15.75645
+2026-03-05 00:06:29;DEBUG;Epoch Summary|Epoch 67 | valid: ( 479/ 480)MSE: 0.01580|loss: 0.01580|PSNR: 18.03929
+2026-03-05 00:06:29;INFO;Saved latest model in epoch : 67
+2026-03-05 00:06:59;DEBUG;Epoch Summary|Epoch 68 | train: (8000/8000)MSE: 0.02697|loss: 0.02697|PSNR: 15.79193
+2026-03-05 00:07:02;DEBUG;Epoch Summary|Epoch 68 | valid: ( 479/ 480)MSE: 0.01576|loss: 0.01576|PSNR: 18.05462
+2026-03-05 00:07:02;INFO;Saved latest model in epoch : 68
+2026-03-05 00:07:33;DEBUG;Epoch Summary|Epoch 69 | train: (8000/8000)MSE: 0.02691|loss: 0.02691|PSNR: 15.80159
+2026-03-05 00:07:35;DEBUG;Epoch Summary|Epoch 69 | valid: ( 479/ 480)MSE: 0.01607|loss: 0.01607|PSNR: 17.96677
+2026-03-05 00:07:35;INFO;Saved latest model in epoch : 69
+2026-03-05 00:08:05;DEBUG;Epoch Summary|Epoch 70 | train: (8000/8000)MSE: 0.02697|loss: 0.02697|PSNR: 15.79674
+2026-03-05 00:08:08;DEBUG;Epoch Summary|Epoch 70 | valid: ( 479/ 480)MSE: 0.01591|loss: 0.01591|PSNR: 18.01600
+2026-03-05 00:08:08;INFO;Saved latest model in epoch : 70
+2026-03-05 00:08:39;DEBUG;Epoch Summary|Epoch 71 | train: (8000/8000)MSE: 0.02676|loss: 0.02676|PSNR: 15.82716
+2026-03-05 00:08:42;DEBUG;Epoch Summary|Epoch 71 | valid: ( 479/ 480)MSE: 0.01606|loss: 0.01606|PSNR: 17.96999
+2026-03-05 00:08:42;INFO;Saved latest model in epoch : 71
+2026-03-05 00:09:12;DEBUG;Epoch Summary|Epoch 72 | train: (8000/8000)MSE: 0.02712|loss: 0.02712|PSNR: 15.77445
+2026-03-05 00:09:15;DEBUG;Epoch Summary|Epoch 72 | valid: ( 479/ 480)MSE: 0.01577|loss: 0.01577|PSNR: 18.04287
+2026-03-05 00:09:15;INFO;Saved latest model in epoch : 72
+2026-03-05 00:09:45;DEBUG;Epoch Summary|Epoch 73 | train: (8000/8000)MSE: 0.02684|loss: 0.02684|PSNR: 15.82412
+2026-03-05 00:09:47;DEBUG;Epoch Summary|Epoch 73 | valid: ( 479/ 480)MSE: 0.01566|loss: 0.01566|PSNR: 18.07207
+2026-03-05 00:09:48;INFO;Saved latest model in epoch : 73
+2026-03-05 00:10:19;DEBUG;Epoch Summary|Epoch 74 | train: (8000/8000)MSE: 0.02675|loss: 0.02675|PSNR: 15.82496
+2026-03-05 00:10:22;DEBUG;Epoch Summary|Epoch 74 | valid: ( 479/ 480)MSE: 0.01588|loss: 0.01588|PSNR: 18.02959
+2026-03-05 00:10:22;INFO;Saved latest model in epoch : 74
+2026-03-05 00:10:52;DEBUG;Epoch Summary|Epoch 75 | train: (8000/8000)MSE: 0.02697|loss: 0.02697|PSNR: 15.79381
+2026-03-05 00:10:55;DEBUG;Epoch Summary|Epoch 75 | valid: ( 479/ 480)MSE: 0.01546|loss: 0.01546|PSNR: 18.13039
+2026-03-05 00:10:55;INFO;Saved latest model in epoch : 75
+2026-03-05 00:11:24;DEBUG;Epoch Summary|Epoch 76 | train: (8000/8000)MSE: 0.02678|loss: 0.02678|PSNR: 15.82647
+2026-03-05 00:11:27;DEBUG;Epoch Summary|Epoch 76 | valid: ( 479/ 480)MSE: 0.01602|loss: 0.01602|PSNR: 17.97411
+2026-03-05 00:11:27;INFO;Saved latest model in epoch : 76
+2026-03-05 00:11:58;DEBUG;Epoch Summary|Epoch 77 | train: (8000/8000)MSE: 0.02707|loss: 0.02707|PSNR: 15.78489
+2026-03-05 00:12:01;DEBUG;Epoch Summary|Epoch 77 | valid: ( 479/ 480)MSE: 0.01576|loss: 0.01576|PSNR: 18.05428
+2026-03-05 00:12:01;INFO;Saved latest model in epoch : 77
+2026-03-05 00:12:31;DEBUG;Epoch Summary|Epoch 78 | train: (8000/8000)MSE: 0.02709|loss: 0.02709|PSNR: 15.77764
+2026-03-05 00:12:34;DEBUG;Epoch Summary|Epoch 78 | valid: ( 479/ 480)MSE: 0.01564|loss: 0.01564|PSNR: 18.07699
+2026-03-05 00:12:34;INFO;Saved latest model in epoch : 78
+2026-03-05 00:13:05;DEBUG;Epoch Summary|Epoch 79 | train: (8000/8000)MSE: 0.02708|loss: 0.02708|PSNR: 15.77574
+2026-03-05 00:13:08;DEBUG;Epoch Summary|Epoch 79 | valid: ( 479/ 480)MSE: 0.01623|loss: 0.01623|PSNR: 17.93394
+2026-03-05 00:13:08;INFO;Saved latest model in epoch : 79
+2026-03-05 00:13:38;DEBUG;Epoch Summary|Epoch 80 | train: (8000/8000)MSE: 0.02698|loss: 0.02698|PSNR: 15.79515
+2026-03-05 00:13:41;DEBUG;Epoch Summary|Epoch 80 | valid: ( 479/ 480)MSE: 0.01573|loss: 0.01573|PSNR: 18.06292
+2026-03-05 00:13:41;INFO;Saved latest model in epoch : 80
+2026-03-05 00:14:12;DEBUG;Epoch Summary|Epoch 81 | train: (8000/8000)MSE: 0.02712|loss: 0.02712|PSNR: 15.77808
+2026-03-05 00:14:14;DEBUG;Epoch Summary|Epoch 81 | valid: ( 479/ 480)MSE: 0.01622|loss: 0.01622|PSNR: 17.92888
+2026-03-05 00:14:14;INFO;Saved latest model in epoch : 81
+2026-03-05 00:14:45;DEBUG;Epoch Summary|Epoch 82 | train: (8000/8000)MSE: 0.02696|loss: 0.02696|PSNR: 15.80428
+2026-03-05 00:14:47;DEBUG;Epoch Summary|Epoch 82 | valid: ( 479/ 480)MSE: 0.01577|loss: 0.01577|PSNR: 18.05177
+2026-03-05 00:14:47;INFO;Saved latest model in epoch : 82
+2026-03-05 00:15:19;DEBUG;Epoch Summary|Epoch 83 | train: (8000/8000)MSE: 0.02701|loss: 0.02701|PSNR: 15.79083
+2026-03-05 00:15:21;DEBUG;Epoch Summary|Epoch 83 | valid: ( 479/ 480)MSE: 0.01608|loss: 0.01608|PSNR: 17.97424
+2026-03-05 00:15:21;INFO;Saved latest model in epoch : 83
+2026-03-05 00:15:54;DEBUG;Epoch Summary|Epoch 84 | train: (8000/8000)MSE: 0.02713|loss: 0.02713|PSNR: 15.77493
+2026-03-05 00:15:56;DEBUG;Epoch Summary|Epoch 84 | valid: ( 479/ 480)MSE: 0.01570|loss: 0.01570|PSNR: 18.08187
+2026-03-05 00:15:56;INFO;Saved latest model in epoch : 84
+2026-03-05 00:16:27;DEBUG;Epoch Summary|Epoch 85 | train: (8000/8000)MSE: 0.02684|loss: 0.02684|PSNR: 15.81899
+2026-03-05 00:16:30;DEBUG;Epoch Summary|Epoch 85 | valid: ( 479/ 480)MSE: 0.01636|loss: 0.01636|PSNR: 17.88570
+2026-03-05 00:16:30;INFO;Saved latest model in epoch : 85
+2026-03-05 00:17:00;DEBUG;Epoch Summary|Epoch 86 | train: (8000/8000)MSE: 0.01004|loss: 0.01004|PSNR: 25.79403
+2026-03-05 00:17:03;DEBUG;Epoch Summary|Epoch 86 | valid: ( 479/ 480)MSE: 0.00161|loss: 0.00161|PSNR: 27.98611
+2026-03-05 00:17:03;INFO;Saved latest model in epoch : 86
+2026-03-05 00:17:03;INFO;Saved best model in epoch : 86
+2026-03-05 00:17:34;DEBUG;Epoch Summary|Epoch 87 | train: (8000/8000)MSE: 0.00070|loss: 0.00070|PSNR: 32.06597
+2026-03-05 00:17:36;DEBUG;Epoch Summary|Epoch 87 | valid: ( 479/ 480)MSE: 0.00160|loss: 0.00160|PSNR: 27.98936
+2026-03-05 00:17:36;INFO;Saved latest model in epoch : 87
+2026-03-05 00:17:36;INFO;Saved best model in epoch : 87
+2026-03-05 00:18:06;DEBUG;Epoch Summary|Epoch 88 | train: (8000/8000)MSE: 0.00069|loss: 0.00069|PSNR: 32.03098
+2026-03-05 00:18:08;DEBUG;Epoch Summary|Epoch 88 | valid: ( 479/ 480)MSE: 0.00156|loss: 0.00156|PSNR: 28.13892
+2026-03-05 00:18:08;INFO;Saved latest model in epoch : 88
+2026-03-05 00:18:08;INFO;Saved best model in epoch : 88
+2026-03-05 00:18:37;DEBUG;Epoch Summary|Epoch 89 | train: (8000/8000)MSE: 0.00067|loss: 0.00067|PSNR: 32.16624
+2026-03-05 00:18:40;DEBUG;Epoch Summary|Epoch 89 | valid: ( 479/ 480)MSE: 0.00154|loss: 0.00154|PSNR: 28.19314
+2026-03-05 00:18:40;INFO;Saved latest model in epoch : 89
+2026-03-05 00:18:40;INFO;Saved best model in epoch : 89
+2026-03-05 00:19:10;DEBUG;Epoch Summary|Epoch 90 | train: (8000/8000)MSE: 0.00066|loss: 0.00066|PSNR: 32.23065
+2026-03-05 00:19:12;DEBUG;Epoch Summary|Epoch 90 | valid: ( 479/ 480)MSE: 0.00157|loss: 0.00157|PSNR: 28.07615
+2026-03-05 00:19:12;INFO;Saved latest model in epoch : 90
+2026-03-05 00:19:44;DEBUG;Epoch Summary|Epoch 91 | train: (8000/8000)MSE: 0.00069|loss: 0.00069|PSNR: 32.02510
+2026-03-05 00:19:47;DEBUG;Epoch Summary|Epoch 91 | valid: ( 479/ 480)MSE: 0.00163|loss: 0.00163|PSNR: 27.90299
+2026-03-05 00:19:47;INFO;Saved latest model in epoch : 91
+2026-03-05 00:20:15;DEBUG;Epoch Summary|Epoch 92 | train: (8000/8000)MSE: 0.00069|loss: 0.00069|PSNR: 32.11603
+2026-03-05 00:20:18;DEBUG;Epoch Summary|Epoch 92 | valid: ( 479/ 480)MSE: 0.00166|loss: 0.00166|PSNR: 27.85828
+2026-03-05 00:20:18;INFO;Saved latest model in epoch : 92
+2026-03-05 00:20:48;DEBUG;Epoch Summary|Epoch 93 | train: (8000/8000)MSE: 0.00069|loss: 0.00069|PSNR: 32.07147
+2026-03-05 00:20:51;DEBUG;Epoch Summary|Epoch 93 | valid: ( 479/ 480)MSE: 0.00160|loss: 0.00160|PSNR: 28.00073
+2026-03-05 00:20:51;INFO;Saved latest model in epoch : 93
+2026-03-05 00:21:20;DEBUG;Epoch Summary|Epoch 94 | train: (8000/8000)MSE: 0.00066|loss: 0.00066|PSNR: 32.29452
+2026-03-05 00:21:23;DEBUG;Epoch Summary|Epoch 94 | valid: ( 479/ 480)MSE: 0.00152|loss: 0.00152|PSNR: 28.20845
+2026-03-05 00:21:23;INFO;Saved latest model in epoch : 94
+2026-03-05 00:21:23;INFO;Saved best model in epoch : 94
+2026-03-05 00:21:53;DEBUG;Epoch Summary|Epoch 95 | train: (8000/8000)MSE: 0.00070|loss: 0.00070|PSNR: 31.98448
+2026-03-05 00:21:55;DEBUG;Epoch Summary|Epoch 95 | valid: ( 479/ 480)MSE: 0.00152|loss: 0.00152|PSNR: 28.24900
+2026-03-05 00:21:55;INFO;Saved latest model in epoch : 95
+2026-03-05 00:21:55;INFO;Saved best model in epoch : 95
+2026-03-05 00:22:25;DEBUG;Epoch Summary|Epoch 96 | train: (8000/8000)MSE: 0.00065|loss: 0.00065|PSNR: 32.35013
+2026-03-05 00:22:28;DEBUG;Epoch Summary|Epoch 96 | valid: ( 479/ 480)MSE: 0.00154|loss: 0.00154|PSNR: 28.19286
+2026-03-05 00:22:28;INFO;Saved latest model in epoch : 96
+2026-03-05 00:22:58;DEBUG;Epoch Summary|Epoch 97 | train: (8000/8000)MSE: 0.00066|loss: 0.00066|PSNR: 32.32568
+2026-03-05 00:23:01;DEBUG;Epoch Summary|Epoch 97 | valid: ( 479/ 480)MSE: 0.00155|loss: 0.00155|PSNR: 28.16615
+2026-03-05 00:23:01;INFO;Saved latest model in epoch : 97
+2026-03-05 00:23:30;DEBUG;Epoch Summary|Epoch 98 | train: (8000/8000)MSE: 0.00066|loss: 0.00066|PSNR: 32.29092
+2026-03-05 00:23:32;DEBUG;Epoch Summary|Epoch 98 | valid: ( 479/ 480)MSE: 0.00149|loss: 0.00149|PSNR: 28.32139
+2026-03-05 00:23:33;INFO;Saved latest model in epoch : 98
+2026-03-05 00:23:33;INFO;Saved best model in epoch : 98
+2026-03-05 00:24:03;DEBUG;Epoch Summary|Epoch 99 | train: (8000/8000)MSE: 0.00066|loss: 0.00066|PSNR: 32.30665
+2026-03-05 00:24:06;DEBUG;Epoch Summary|Epoch 99 | valid: ( 479/ 480)MSE: 0.00148|loss: 0.00148|PSNR: 28.32773
+2026-03-05 00:24:06;INFO;Saved latest model in epoch : 99
+2026-03-05 00:24:06;INFO;Saved model milestone in epoch : 99
+2026-03-05 00:24:06;INFO;Saved best model in epoch : 99
+2026-03-05 00:24:35;DEBUG;Epoch Summary|Epoch 100 | train: (8000/8000)MSE: 0.00063|loss: 0.00063|PSNR: 32.44767
+2026-03-05 00:24:38;DEBUG;Epoch Summary|Epoch 100 | valid: ( 479/ 480)MSE: 0.00157|loss: 0.00157|PSNR: 28.10560
+2026-03-05 00:24:38;INFO;Saved latest model in epoch : 100
+2026-03-05 00:25:08;DEBUG;Epoch Summary|Epoch 101 | train: (8000/8000)MSE: 0.00068|loss: 0.00068|PSNR: 32.18906
+2026-03-05 00:25:10;DEBUG;Epoch Summary|Epoch 101 | valid: ( 479/ 480)MSE: 0.00151|loss: 0.00151|PSNR: 28.29886
+2026-03-05 00:25:10;INFO;Saved latest model in epoch : 101
+2026-03-05 00:25:41;DEBUG;Epoch Summary|Epoch 102 | train: (8000/8000)MSE: 0.00064|loss: 0.00064|PSNR: 32.39824
+2026-03-05 00:25:43;DEBUG;Epoch Summary|Epoch 102 | valid: ( 479/ 480)MSE: 0.00149|loss: 0.00149|PSNR: 28.28915
+2026-03-05 00:25:43;INFO;Saved latest model in epoch : 102
+2026-03-05 00:26:13;DEBUG;Epoch Summary|Epoch 103 | train: (8000/8000)MSE: 0.00064|loss: 0.00064|PSNR: 32.39862
+2026-03-05 00:26:15;DEBUG;Epoch Summary|Epoch 103 | valid: ( 479/ 480)MSE: 0.00153|loss: 0.00153|PSNR: 28.22824
+2026-03-05 00:26:15;INFO;Saved latest model in epoch : 103
+2026-03-05 00:26:46;DEBUG;Epoch Summary|Epoch 104 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.51824
+2026-03-05 00:26:49;DEBUG;Epoch Summary|Epoch 104 | valid: ( 479/ 480)MSE: 0.00150|loss: 0.00150|PSNR: 28.30096
+2026-03-05 00:26:49;INFO;Saved latest model in epoch : 104
+2026-03-05 00:27:19;DEBUG;Epoch Summary|Epoch 105 | train: (8000/8000)MSE: 0.00064|loss: 0.00064|PSNR: 32.33314
+2026-03-05 00:27:21;DEBUG;Epoch Summary|Epoch 105 | valid: ( 479/ 480)MSE: 0.00149|loss: 0.00149|PSNR: 28.32478
+2026-03-05 00:27:21;INFO;Saved latest model in epoch : 105
+2026-03-05 00:27:52;DEBUG;Epoch Summary|Epoch 106 | train: (8000/8000)MSE: 0.00065|loss: 0.00065|PSNR: 32.32244
+2026-03-05 00:27:54;DEBUG;Epoch Summary|Epoch 106 | valid: ( 479/ 480)MSE: 0.00164|loss: 0.00164|PSNR: 27.90144
+2026-03-05 00:27:54;INFO;Saved latest model in epoch : 106
+2026-03-05 00:28:25;DEBUG;Epoch Summary|Epoch 107 | train: (8000/8000)MSE: 0.00066|loss: 0.00066|PSNR: 32.27033
+2026-03-05 00:28:27;DEBUG;Epoch Summary|Epoch 107 | valid: ( 479/ 480)MSE: 0.00155|loss: 0.00155|PSNR: 28.17453
+2026-03-05 00:28:27;INFO;Saved latest model in epoch : 107
+2026-03-05 00:28:58;DEBUG;Epoch Summary|Epoch 108 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.69731
+2026-03-05 00:29:00;DEBUG;Epoch Summary|Epoch 108 | valid: ( 479/ 480)MSE: 0.00150|loss: 0.00150|PSNR: 28.28632
+2026-03-05 00:29:00;INFO;Saved latest model in epoch : 108
+2026-03-05 00:29:30;DEBUG;Epoch Summary|Epoch 109 | train: (8000/8000)MSE: 0.00065|loss: 0.00065|PSNR: 32.33744
+2026-03-05 00:29:32;DEBUG;Epoch Summary|Epoch 109 | valid: ( 479/ 480)MSE: 0.00140|loss: 0.00140|PSNR: 28.61177
+2026-03-05 00:29:32;INFO;Saved latest model in epoch : 109
+2026-03-05 00:29:32;INFO;Saved best model in epoch : 109
+2026-03-05 00:30:03;DEBUG;Epoch Summary|Epoch 110 | train: (8000/8000)MSE: 0.00065|loss: 0.00065|PSNR: 32.32168
+2026-03-05 00:30:05;DEBUG;Epoch Summary|Epoch 110 | valid: ( 479/ 480)MSE: 0.00203|loss: 0.00203|PSNR: 26.98585
+2026-03-05 00:30:05;INFO;Saved latest model in epoch : 110
+2026-03-05 00:30:36;DEBUG;Epoch Summary|Epoch 111 | train: (8000/8000)MSE: 0.00065|loss: 0.00065|PSNR: 32.35142
+2026-03-05 00:30:38;DEBUG;Epoch Summary|Epoch 111 | valid: ( 479/ 480)MSE: 0.00150|loss: 0.00150|PSNR: 28.33997
+2026-03-05 00:30:38;INFO;Saved latest model in epoch : 111
+2026-03-05 00:31:08;DEBUG;Epoch Summary|Epoch 112 | train: (8000/8000)MSE: 0.00065|loss: 0.00065|PSNR: 32.41319
+2026-03-05 00:31:11;DEBUG;Epoch Summary|Epoch 112 | valid: ( 479/ 480)MSE: 0.00146|loss: 0.00146|PSNR: 28.40522
+2026-03-05 00:31:11;INFO;Saved latest model in epoch : 112
+2026-03-05 00:31:42;DEBUG;Epoch Summary|Epoch 113 | train: (8000/8000)MSE: 0.00064|loss: 0.00064|PSNR: 32.44831
+2026-03-05 00:31:45;DEBUG;Epoch Summary|Epoch 113 | valid: ( 479/ 480)MSE: 0.00151|loss: 0.00151|PSNR: 28.28683
+2026-03-05 00:31:45;INFO;Saved latest model in epoch : 113
+2026-03-05 00:32:15;DEBUG;Epoch Summary|Epoch 114 | train: (8000/8000)MSE: 0.00063|loss: 0.00063|PSNR: 32.50195
+2026-03-05 00:32:18;DEBUG;Epoch Summary|Epoch 114 | valid: ( 479/ 480)MSE: 0.00143|loss: 0.00143|PSNR: 28.49402
+2026-03-05 00:32:18;INFO;Saved latest model in epoch : 114
+2026-03-05 00:32:49;DEBUG;Epoch Summary|Epoch 115 | train: (8000/8000)MSE: 0.00063|loss: 0.00063|PSNR: 32.46484
+2026-03-05 00:32:51;DEBUG;Epoch Summary|Epoch 115 | valid: ( 479/ 480)MSE: 0.00148|loss: 0.00148|PSNR: 28.35143
+2026-03-05 00:32:51;INFO;Saved latest model in epoch : 115
+2026-03-05 00:33:22;DEBUG;Epoch Summary|Epoch 116 | train: (8000/8000)MSE: 0.00063|loss: 0.00063|PSNR: 32.47837
+2026-03-05 00:33:25;DEBUG;Epoch Summary|Epoch 116 | valid: ( 479/ 480)MSE: 0.00155|loss: 0.00155|PSNR: 28.12513
+2026-03-05 00:33:25;INFO;Saved latest model in epoch : 116
+2026-03-05 00:33:55;DEBUG;Epoch Summary|Epoch 117 | train: (8000/8000)MSE: 0.00061|loss: 0.00061|PSNR: 32.64134
+2026-03-05 00:33:57;DEBUG;Epoch Summary|Epoch 117 | valid: ( 479/ 480)MSE: 0.00147|loss: 0.00147|PSNR: 28.40621
+2026-03-05 00:33:57;INFO;Saved latest model in epoch : 117
+2026-03-05 00:34:29;DEBUG;Epoch Summary|Epoch 118 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.56479
+2026-03-05 00:34:32;DEBUG;Epoch Summary|Epoch 118 | valid: ( 479/ 480)MSE: 0.00151|loss: 0.00151|PSNR: 28.32158
+2026-03-05 00:34:32;INFO;Saved latest model in epoch : 118
+2026-03-05 00:35:01;DEBUG;Epoch Summary|Epoch 119 | train: (8000/8000)MSE: 0.00064|loss: 0.00064|PSNR: 32.40860
+2026-03-05 00:35:04;DEBUG;Epoch Summary|Epoch 119 | valid: ( 479/ 480)MSE: 0.00152|loss: 0.00152|PSNR: 28.24421
+2026-03-05 00:35:04;INFO;Saved latest model in epoch : 119
+2026-03-05 00:35:35;DEBUG;Epoch Summary|Epoch 120 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.56128
+2026-03-05 00:35:37;DEBUG;Epoch Summary|Epoch 120 | valid: ( 479/ 480)MSE: 0.00148|loss: 0.00148|PSNR: 28.34069
+2026-03-05 00:35:37;INFO;Saved latest model in epoch : 120
+2026-03-05 00:36:07;DEBUG;Epoch Summary|Epoch 121 | train: (8000/8000)MSE: 0.00065|loss: 0.00065|PSNR: 32.34707
+2026-03-05 00:36:09;DEBUG;Epoch Summary|Epoch 121 | valid: ( 479/ 480)MSE: 0.00167|loss: 0.00167|PSNR: 27.82344
+2026-03-05 00:36:09;INFO;Saved latest model in epoch : 121
+2026-03-05 00:36:41;DEBUG;Epoch Summary|Epoch 122 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.63442
+2026-03-05 00:36:44;DEBUG;Epoch Summary|Epoch 122 | valid: ( 479/ 480)MSE: 0.00134|loss: 0.00134|PSNR: 28.80210
+2026-03-05 00:36:44;INFO;Saved latest model in epoch : 122
+2026-03-05 00:36:44;INFO;Saved best model in epoch : 122
+2026-03-05 00:37:13;DEBUG;Epoch Summary|Epoch 123 | train: (8000/8000)MSE: 0.00061|loss: 0.00061|PSNR: 32.63250
+2026-03-05 00:37:16;DEBUG;Epoch Summary|Epoch 123 | valid: ( 479/ 480)MSE: 0.00144|loss: 0.00144|PSNR: 28.49065
+2026-03-05 00:37:16;INFO;Saved latest model in epoch : 123
+2026-03-05 00:37:47;DEBUG;Epoch Summary|Epoch 124 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.67218
+2026-03-05 00:37:49;DEBUG;Epoch Summary|Epoch 124 | valid: ( 479/ 480)MSE: 0.00143|loss: 0.00143|PSNR: 28.51466
+2026-03-05 00:37:49;INFO;Saved latest model in epoch : 124
+2026-03-05 00:38:19;DEBUG;Epoch Summary|Epoch 125 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.58193
+2026-03-05 00:38:22;DEBUG;Epoch Summary|Epoch 125 | valid: ( 479/ 480)MSE: 0.00143|loss: 0.00143|PSNR: 28.50570
+2026-03-05 00:38:22;INFO;Saved latest model in epoch : 125
+2026-03-05 00:38:54;DEBUG;Epoch Summary|Epoch 126 | train: (8000/8000)MSE: 0.00063|loss: 0.00063|PSNR: 32.50052
+2026-03-05 00:38:56;DEBUG;Epoch Summary|Epoch 126 | valid: ( 479/ 480)MSE: 0.00138|loss: 0.00138|PSNR: 28.65175
+2026-03-05 00:38:56;INFO;Saved latest model in epoch : 126
+2026-03-05 00:39:26;DEBUG;Epoch Summary|Epoch 127 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.72879
+2026-03-05 00:39:28;DEBUG;Epoch Summary|Epoch 127 | valid: ( 479/ 480)MSE: 0.00150|loss: 0.00150|PSNR: 28.27414
+2026-03-05 00:39:28;INFO;Saved latest model in epoch : 127
+2026-03-05 00:39:57;DEBUG;Epoch Summary|Epoch 128 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.56498
+2026-03-05 00:39:59;DEBUG;Epoch Summary|Epoch 128 | valid: ( 479/ 480)MSE: 0.00139|loss: 0.00139|PSNR: 28.66202
+2026-03-05 00:39:59;INFO;Saved latest model in epoch : 128
+2026-03-05 00:40:28;DEBUG;Epoch Summary|Epoch 129 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.56860
+2026-03-05 00:40:30;DEBUG;Epoch Summary|Epoch 129 | valid: ( 479/ 480)MSE: 0.00142|loss: 0.00142|PSNR: 28.52892
+2026-03-05 00:40:30;INFO;Saved latest model in epoch : 129
+2026-03-05 00:41:00;DEBUG;Epoch Summary|Epoch 130 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.80489
+2026-03-05 00:41:02;DEBUG;Epoch Summary|Epoch 130 | valid: ( 479/ 480)MSE: 0.00141|loss: 0.00141|PSNR: 28.55726
+2026-03-05 00:41:02;INFO;Saved latest model in epoch : 130
+2026-03-05 00:41:32;DEBUG;Epoch Summary|Epoch 131 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.58269
+2026-03-05 00:41:35;DEBUG;Epoch Summary|Epoch 131 | valid: ( 479/ 480)MSE: 0.00142|loss: 0.00142|PSNR: 28.55014
+2026-03-05 00:41:35;INFO;Saved latest model in epoch : 131
+2026-03-05 00:42:06;DEBUG;Epoch Summary|Epoch 132 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.73770
+2026-03-05 00:42:09;DEBUG;Epoch Summary|Epoch 132 | valid: ( 479/ 480)MSE: 0.00146|loss: 0.00146|PSNR: 28.39547
+2026-03-05 00:42:09;INFO;Saved latest model in epoch : 132
+2026-03-05 00:42:39;DEBUG;Epoch Summary|Epoch 133 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.59146
+2026-03-05 00:42:41;DEBUG;Epoch Summary|Epoch 133 | valid: ( 479/ 480)MSE: 0.00150|loss: 0.00150|PSNR: 28.28849
+2026-03-05 00:42:41;INFO;Saved latest model in epoch : 133
+2026-03-05 00:43:12;DEBUG;Epoch Summary|Epoch 134 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.74284
+2026-03-05 00:43:14;DEBUG;Epoch Summary|Epoch 134 | valid: ( 479/ 480)MSE: 0.00149|loss: 0.00149|PSNR: 28.33982
+2026-03-05 00:43:14;INFO;Saved latest model in epoch : 134
+2026-03-05 00:43:45;DEBUG;Epoch Summary|Epoch 135 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.78811
+2026-03-05 00:43:48;DEBUG;Epoch Summary|Epoch 135 | valid: ( 479/ 480)MSE: 0.00141|loss: 0.00141|PSNR: 28.57630
+2026-03-05 00:43:48;INFO;Saved latest model in epoch : 135
+2026-03-05 00:44:20;DEBUG;Epoch Summary|Epoch 136 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.75719
+2026-03-05 00:44:23;DEBUG;Epoch Summary|Epoch 136 | valid: ( 479/ 480)MSE: 0.00141|loss: 0.00141|PSNR: 28.56927
+2026-03-05 00:44:23;INFO;Saved latest model in epoch : 136
+2026-03-05 00:44:52;DEBUG;Epoch Summary|Epoch 137 | train: (8000/8000)MSE: 0.00067|loss: 0.00067|PSNR: 32.28894
+2026-03-05 00:44:55;DEBUG;Epoch Summary|Epoch 137 | valid: ( 479/ 480)MSE: 0.00139|loss: 0.00139|PSNR: 28.61395
+2026-03-05 00:44:55;INFO;Saved latest model in epoch : 137
+2026-03-05 00:45:24;DEBUG;Epoch Summary|Epoch 138 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.69510
+2026-03-05 00:45:27;DEBUG;Epoch Summary|Epoch 138 | valid: ( 479/ 480)MSE: 0.00140|loss: 0.00140|PSNR: 28.61971
+2026-03-05 00:45:27;INFO;Saved latest model in epoch : 138
+2026-03-05 00:45:57;DEBUG;Epoch Summary|Epoch 139 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.53629
+2026-03-05 00:46:00;DEBUG;Epoch Summary|Epoch 139 | valid: ( 479/ 480)MSE: 0.00147|loss: 0.00147|PSNR: 28.40394
+2026-03-05 00:46:00;INFO;Saved latest model in epoch : 139
+2026-03-05 00:46:30;DEBUG;Epoch Summary|Epoch 140 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.70561
+2026-03-05 00:46:32;DEBUG;Epoch Summary|Epoch 140 | valid: ( 479/ 480)MSE: 0.00133|loss: 0.00133|PSNR: 28.80662
+2026-03-05 00:46:32;INFO;Saved latest model in epoch : 140
+2026-03-05 00:46:32;INFO;Saved best model in epoch : 140
+2026-03-05 00:47:03;DEBUG;Epoch Summary|Epoch 141 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.01652
+2026-03-05 00:47:05;DEBUG;Epoch Summary|Epoch 141 | valid: ( 479/ 480)MSE: 0.00149|loss: 0.00149|PSNR: 28.33780
+2026-03-05 00:47:06;INFO;Saved latest model in epoch : 141
+2026-03-05 00:47:36;DEBUG;Epoch Summary|Epoch 142 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.71956
+2026-03-05 00:47:39;DEBUG;Epoch Summary|Epoch 142 | valid: ( 479/ 480)MSE: 0.00140|loss: 0.00140|PSNR: 28.63074
+2026-03-05 00:47:39;INFO;Saved latest model in epoch : 142
+2026-03-05 00:48:09;DEBUG;Epoch Summary|Epoch 143 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.80409
+2026-03-05 00:48:11;DEBUG;Epoch Summary|Epoch 143 | valid: ( 479/ 480)MSE: 0.00133|loss: 0.00133|PSNR: 28.83534
+2026-03-05 00:48:11;INFO;Saved latest model in epoch : 143
+2026-03-05 00:48:11;INFO;Saved best model in epoch : 143
+2026-03-05 00:48:42;DEBUG;Epoch Summary|Epoch 144 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.77771
+2026-03-05 00:48:44;DEBUG;Epoch Summary|Epoch 144 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.68423
+2026-03-05 00:48:44;INFO;Saved latest model in epoch : 144
+2026-03-05 00:49:14;DEBUG;Epoch Summary|Epoch 145 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.72388
+2026-03-05 00:49:16;DEBUG;Epoch Summary|Epoch 145 | valid: ( 479/ 480)MSE: 0.00138|loss: 0.00138|PSNR: 28.65962
+2026-03-05 00:49:16;INFO;Saved latest model in epoch : 145
+2026-03-05 00:49:47;DEBUG;Epoch Summary|Epoch 146 | train: (8000/8000)MSE: 0.00060|loss: 0.00060|PSNR: 32.77030
+2026-03-05 00:49:50;DEBUG;Epoch Summary|Epoch 146 | valid: ( 479/ 480)MSE: 0.00141|loss: 0.00141|PSNR: 28.55696
+2026-03-05 00:49:50;INFO;Saved latest model in epoch : 146
+2026-03-05 00:50:21;DEBUG;Epoch Summary|Epoch 147 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.80050
+2026-03-05 00:50:23;DEBUG;Epoch Summary|Epoch 147 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.71405
+2026-03-05 00:50:23;INFO;Saved latest model in epoch : 147
+2026-03-05 00:50:54;DEBUG;Epoch Summary|Epoch 148 | train: (8000/8000)MSE: 0.00062|loss: 0.00062|PSNR: 32.56821
+2026-03-05 00:50:57;DEBUG;Epoch Summary|Epoch 148 | valid: ( 479/ 480)MSE: 0.00149|loss: 0.00149|PSNR: 28.33747
+2026-03-05 00:50:57;INFO;Saved latest model in epoch : 148
+2026-03-05 00:51:27;DEBUG;Epoch Summary|Epoch 149 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.85958
+2026-03-05 00:51:30;DEBUG;Epoch Summary|Epoch 149 | valid: ( 479/ 480)MSE: 0.00138|loss: 0.00138|PSNR: 28.69917
+2026-03-05 00:51:30;INFO;Saved latest model in epoch : 149
+2026-03-05 00:51:30;INFO;Saved model milestone in epoch : 149
+2026-03-05 00:52:00;DEBUG;Epoch Summary|Epoch 150 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.86176
+2026-03-05 00:52:02;DEBUG;Epoch Summary|Epoch 150 | valid: ( 479/ 480)MSE: 0.00138|loss: 0.00138|PSNR: 28.64554
+2026-03-05 00:52:02;INFO;Saved latest model in epoch : 150
+2026-03-05 00:52:34;DEBUG;Epoch Summary|Epoch 151 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.93259
+2026-03-05 00:52:36;DEBUG;Epoch Summary|Epoch 151 | valid: ( 479/ 480)MSE: 0.00129|loss: 0.00129|PSNR: 28.97958
+2026-03-05 00:52:36;INFO;Saved latest model in epoch : 151
+2026-03-05 00:52:36;INFO;Saved best model in epoch : 151
+2026-03-05 00:53:06;DEBUG;Epoch Summary|Epoch 152 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.85482
+2026-03-05 00:53:09;DEBUG;Epoch Summary|Epoch 152 | valid: ( 479/ 480)MSE: 0.00139|loss: 0.00139|PSNR: 28.63471
+2026-03-05 00:53:09;INFO;Saved latest model in epoch : 152
+2026-03-05 00:53:39;DEBUG;Epoch Summary|Epoch 153 | train: (8000/8000)MSE: 0.00061|loss: 0.00061|PSNR: 32.69669
+2026-03-05 00:53:42;DEBUG;Epoch Summary|Epoch 153 | valid: ( 479/ 480)MSE: 0.00134|loss: 0.00134|PSNR: 28.80892
+2026-03-05 00:53:42;INFO;Saved latest model in epoch : 153
+2026-03-05 00:54:12;DEBUG;Epoch Summary|Epoch 154 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.02282
+2026-03-05 00:54:14;DEBUG;Epoch Summary|Epoch 154 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.66213
+2026-03-05 00:54:14;INFO;Saved latest model in epoch : 154
+2026-03-05 00:54:43;DEBUG;Epoch Summary|Epoch 155 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.80411
+2026-03-05 00:54:46;DEBUG;Epoch Summary|Epoch 155 | valid: ( 479/ 480)MSE: 0.00134|loss: 0.00134|PSNR: 28.79592
+2026-03-05 00:54:46;INFO;Saved latest model in epoch : 155
+2026-03-05 00:55:16;DEBUG;Epoch Summary|Epoch 156 | train: (8000/8000)MSE: 0.00073|loss: 0.00073|PSNR: 32.57950
+2026-03-05 00:55:18;DEBUG;Epoch Summary|Epoch 156 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 28.96626
+2026-03-05 00:55:18;INFO;Saved latest model in epoch : 156
+2026-03-05 00:55:18;INFO;Saved best model in epoch : 156
+2026-03-05 00:55:50;DEBUG;Epoch Summary|Epoch 157 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.91280
+2026-03-05 00:55:53;DEBUG;Epoch Summary|Epoch 157 | valid: ( 479/ 480)MSE: 0.00132|loss: 0.00132|PSNR: 28.85892
+2026-03-05 00:55:53;INFO;Saved latest model in epoch : 157
+2026-03-05 00:56:23;DEBUG;Epoch Summary|Epoch 158 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.85883
+2026-03-05 00:56:25;DEBUG;Epoch Summary|Epoch 158 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 28.98031
+2026-03-05 00:56:25;INFO;Saved latest model in epoch : 158
+2026-03-05 00:56:25;INFO;Saved best model in epoch : 158
+2026-03-05 00:56:55;DEBUG;Epoch Summary|Epoch 159 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.99231
+2026-03-05 00:56:57;DEBUG;Epoch Summary|Epoch 159 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.69044
+2026-03-05 00:56:57;INFO;Saved latest model in epoch : 159
+2026-03-05 00:57:26;DEBUG;Epoch Summary|Epoch 160 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.96521
+2026-03-05 00:57:29;DEBUG;Epoch Summary|Epoch 160 | valid: ( 479/ 480)MSE: 0.00132|loss: 0.00132|PSNR: 28.88946
+2026-03-05 00:57:29;INFO;Saved latest model in epoch : 160
+2026-03-05 00:58:00;DEBUG;Epoch Summary|Epoch 161 | train: (8000/8000)MSE: 0.00061|loss: 0.00061|PSNR: 32.64724
+2026-03-05 00:58:02;DEBUG;Epoch Summary|Epoch 161 | valid: ( 479/ 480)MSE: 0.00142|loss: 0.00142|PSNR: 28.53329
+2026-03-05 00:58:02;INFO;Saved latest model in epoch : 161
+2026-03-05 00:58:33;DEBUG;Epoch Summary|Epoch 162 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.89080
+2026-03-05 00:58:35;DEBUG;Epoch Summary|Epoch 162 | valid: ( 479/ 480)MSE: 0.00132|loss: 0.00132|PSNR: 28.86564
+2026-03-05 00:58:35;INFO;Saved latest model in epoch : 162
+2026-03-05 00:59:05;DEBUG;Epoch Summary|Epoch 163 | train: (8000/8000)MSE: 0.00061|loss: 0.00061|PSNR: 32.69357
+2026-03-05 00:59:08;DEBUG;Epoch Summary|Epoch 163 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.70558
+2026-03-05 00:59:08;INFO;Saved latest model in epoch : 163
+2026-03-05 00:59:38;DEBUG;Epoch Summary|Epoch 164 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.07095
+2026-03-05 00:59:40;DEBUG;Epoch Summary|Epoch 164 | valid: ( 479/ 480)MSE: 0.00142|loss: 0.00142|PSNR: 28.52756
+2026-03-05 00:59:40;INFO;Saved latest model in epoch : 164
+2026-03-05 01:00:10;DEBUG;Epoch Summary|Epoch 165 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.78134
+2026-03-05 01:00:13;DEBUG;Epoch Summary|Epoch 165 | valid: ( 479/ 480)MSE: 0.00127|loss: 0.00127|PSNR: 29.02137
+2026-03-05 01:00:13;INFO;Saved latest model in epoch : 165
+2026-03-05 01:00:13;INFO;Saved best model in epoch : 165
+2026-03-05 01:00:43;DEBUG;Epoch Summary|Epoch 166 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.92361
+2026-03-05 01:00:46;DEBUG;Epoch Summary|Epoch 166 | valid: ( 479/ 480)MSE: 0.00135|loss: 0.00135|PSNR: 28.78003
+2026-03-05 01:00:46;INFO;Saved latest model in epoch : 166
+2026-03-05 01:01:16;DEBUG;Epoch Summary|Epoch 167 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.93243
+2026-03-05 01:01:19;DEBUG;Epoch Summary|Epoch 167 | valid: ( 479/ 480)MSE: 0.00135|loss: 0.00135|PSNR: 28.76450
+2026-03-05 01:01:19;INFO;Saved latest model in epoch : 167
+2026-03-05 01:01:48;DEBUG;Epoch Summary|Epoch 168 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.96473
+2026-03-05 01:01:50;DEBUG;Epoch Summary|Epoch 168 | valid: ( 479/ 480)MSE: 0.00135|loss: 0.00135|PSNR: 28.75430
+2026-03-05 01:01:51;INFO;Saved latest model in epoch : 168
+2026-03-05 01:02:20;DEBUG;Epoch Summary|Epoch 169 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.83193
+2026-03-05 01:02:23;DEBUG;Epoch Summary|Epoch 169 | valid: ( 479/ 480)MSE: 0.00135|loss: 0.00135|PSNR: 28.78797
+2026-03-05 01:02:23;INFO;Saved latest model in epoch : 169
+2026-03-05 01:02:53;DEBUG;Epoch Summary|Epoch 170 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.04092
+2026-03-05 01:02:56;DEBUG;Epoch Summary|Epoch 170 | valid: ( 479/ 480)MSE: 0.00130|loss: 0.00130|PSNR: 28.91564
+2026-03-05 01:02:56;INFO;Saved latest model in epoch : 170
+2026-03-05 01:03:26;DEBUG;Epoch Summary|Epoch 171 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 32.97149
+2026-03-05 01:03:28;DEBUG;Epoch Summary|Epoch 171 | valid: ( 479/ 480)MSE: 0.00134|loss: 0.00134|PSNR: 28.80749
+2026-03-05 01:03:28;INFO;Saved latest model in epoch : 171
+2026-03-05 01:03:59;DEBUG;Epoch Summary|Epoch 172 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.03213
+2026-03-05 01:04:01;DEBUG;Epoch Summary|Epoch 172 | valid: ( 479/ 480)MSE: 0.00135|loss: 0.00135|PSNR: 28.75421
+2026-03-05 01:04:01;INFO;Saved latest model in epoch : 172
+2026-03-05 01:04:31;DEBUG;Epoch Summary|Epoch 173 | train: (8000/8000)MSE: 0.00059|loss: 0.00059|PSNR: 32.85698
+2026-03-05 01:04:34;DEBUG;Epoch Summary|Epoch 173 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.70442
+2026-03-05 01:04:34;INFO;Saved latest model in epoch : 173
+2026-03-05 01:05:02;DEBUG;Epoch Summary|Epoch 174 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.11061
+2026-03-05 01:05:05;DEBUG;Epoch Summary|Epoch 174 | valid: ( 479/ 480)MSE: 0.00150|loss: 0.00150|PSNR: 28.30091
+2026-03-05 01:05:05;INFO;Saved latest model in epoch : 174
+2026-03-05 01:05:35;DEBUG;Epoch Summary|Epoch 175 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.04104
+2026-03-05 01:05:38;DEBUG;Epoch Summary|Epoch 175 | valid: ( 479/ 480)MSE: 0.00136|loss: 0.00136|PSNR: 28.74814
+2026-03-05 01:05:38;INFO;Saved latest model in epoch : 175
+2026-03-05 01:06:07;DEBUG;Epoch Summary|Epoch 176 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.06023
+2026-03-05 01:06:09;DEBUG;Epoch Summary|Epoch 176 | valid: ( 479/ 480)MSE: 0.00138|loss: 0.00138|PSNR: 28.66001
+2026-03-05 01:06:09;INFO;Saved latest model in epoch : 176
+2026-03-05 01:06:41;DEBUG;Epoch Summary|Epoch 177 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.88751
+2026-03-05 01:06:43;DEBUG;Epoch Summary|Epoch 177 | valid: ( 479/ 480)MSE: 0.00127|loss: 0.00127|PSNR: 29.02653
+2026-03-05 01:06:43;INFO;Saved latest model in epoch : 177
+2026-03-05 01:06:43;INFO;Saved best model in epoch : 177
+2026-03-05 01:07:14;DEBUG;Epoch Summary|Epoch 178 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.02855
+2026-03-05 01:07:16;DEBUG;Epoch Summary|Epoch 178 | valid: ( 479/ 480)MSE: 0.00134|loss: 0.00134|PSNR: 28.79313
+2026-03-05 01:07:16;INFO;Saved latest model in epoch : 178
+2026-03-05 01:07:47;DEBUG;Epoch Summary|Epoch 179 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.96203
+2026-03-05 01:07:50;DEBUG;Epoch Summary|Epoch 179 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.70753
+2026-03-05 01:07:50;INFO;Saved latest model in epoch : 179
+2026-03-05 01:08:20;DEBUG;Epoch Summary|Epoch 180 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 32.97257
+2026-03-05 01:08:23;DEBUG;Epoch Summary|Epoch 180 | valid: ( 479/ 480)MSE: 0.00139|loss: 0.00139|PSNR: 28.64661
+2026-03-05 01:08:23;INFO;Saved latest model in epoch : 180
+2026-03-05 01:08:55;DEBUG;Epoch Summary|Epoch 181 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.11451
+2026-03-05 01:08:57;DEBUG;Epoch Summary|Epoch 181 | valid: ( 479/ 480)MSE: 0.00130|loss: 0.00130|PSNR: 28.92299
+2026-03-05 01:08:57;INFO;Saved latest model in epoch : 181
+2026-03-05 01:09:29;DEBUG;Epoch Summary|Epoch 182 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 32.83840
+2026-03-05 01:09:31;DEBUG;Epoch Summary|Epoch 182 | valid: ( 479/ 480)MSE: 0.00140|loss: 0.00140|PSNR: 28.60491
+2026-03-05 01:09:31;INFO;Saved latest model in epoch : 182
+2026-03-05 01:10:02;DEBUG;Epoch Summary|Epoch 183 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.09129
+2026-03-05 01:10:04;DEBUG;Epoch Summary|Epoch 183 | valid: ( 479/ 480)MSE: 0.00141|loss: 0.00141|PSNR: 28.57620
+2026-03-05 01:10:04;INFO;Saved latest model in epoch : 183
+2026-03-05 01:10:36;DEBUG;Epoch Summary|Epoch 184 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.96779
+2026-03-05 01:10:38;DEBUG;Epoch Summary|Epoch 184 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 29.00274
+2026-03-05 01:10:38;INFO;Saved latest model in epoch : 184
+2026-03-05 01:11:08;DEBUG;Epoch Summary|Epoch 185 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.14509
+2026-03-05 01:11:11;DEBUG;Epoch Summary|Epoch 185 | valid: ( 479/ 480)MSE: 0.00135|loss: 0.00135|PSNR: 28.77510
+2026-03-05 01:11:11;INFO;Saved latest model in epoch : 185
+2026-03-05 01:11:40;DEBUG;Epoch Summary|Epoch 186 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.08820
+2026-03-05 01:11:43;DEBUG;Epoch Summary|Epoch 186 | valid: ( 479/ 480)MSE: 0.00127|loss: 0.00127|PSNR: 29.05211
+2026-03-05 01:11:43;INFO;Saved latest model in epoch : 186
+2026-03-05 01:11:43;INFO;Saved best model in epoch : 186
+2026-03-05 01:12:13;DEBUG;Epoch Summary|Epoch 187 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.99487
+2026-03-05 01:12:16;DEBUG;Epoch Summary|Epoch 187 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 28.95907
+2026-03-05 01:12:16;INFO;Saved latest model in epoch : 187
+2026-03-05 01:12:48;DEBUG;Epoch Summary|Epoch 188 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.98434
+2026-03-05 01:12:50;DEBUG;Epoch Summary|Epoch 188 | valid: ( 479/ 480)MSE: 0.00131|loss: 0.00131|PSNR: 28.93130
+2026-03-05 01:12:50;INFO;Saved latest model in epoch : 188
+2026-03-05 01:13:22;DEBUG;Epoch Summary|Epoch 189 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.23839
+2026-03-05 01:13:25;DEBUG;Epoch Summary|Epoch 189 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 28.98678
+2026-03-05 01:13:25;INFO;Saved latest model in epoch : 189
+2026-03-05 01:13:56;DEBUG;Epoch Summary|Epoch 190 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 33.00453
+2026-03-05 01:13:58;DEBUG;Epoch Summary|Epoch 190 | valid: ( 479/ 480)MSE: 0.00136|loss: 0.00136|PSNR: 28.70977
+2026-03-05 01:13:58;INFO;Saved latest model in epoch : 190
+2026-03-05 01:14:29;DEBUG;Epoch Summary|Epoch 191 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.28335
+2026-03-05 01:14:32;DEBUG;Epoch Summary|Epoch 191 | valid: ( 479/ 480)MSE: 0.00131|loss: 0.00131|PSNR: 28.89876
+2026-03-05 01:14:32;INFO;Saved latest model in epoch : 191
+2026-03-05 01:15:03;DEBUG;Epoch Summary|Epoch 192 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.12941
+2026-03-05 01:15:06;DEBUG;Epoch Summary|Epoch 192 | valid: ( 479/ 480)MSE: 0.00141|loss: 0.00141|PSNR: 28.61135
+2026-03-05 01:15:06;INFO;Saved latest model in epoch : 192
+2026-03-05 01:15:36;DEBUG;Epoch Summary|Epoch 193 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.27511
+2026-03-05 01:15:38;DEBUG;Epoch Summary|Epoch 193 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.23734
+2026-03-05 01:15:38;INFO;Saved latest model in epoch : 193
+2026-03-05 01:15:38;INFO;Saved best model in epoch : 193
+2026-03-05 01:16:09;DEBUG;Epoch Summary|Epoch 194 | train: (8000/8000)MSE: 0.00057|loss: 0.00057|PSNR: 32.97367
+2026-03-05 01:16:12;DEBUG;Epoch Summary|Epoch 194 | valid: ( 479/ 480)MSE: 0.00137|loss: 0.00137|PSNR: 28.69956
+2026-03-05 01:16:12;INFO;Saved latest model in epoch : 194
+2026-03-05 01:16:43;DEBUG;Epoch Summary|Epoch 195 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.18018
+2026-03-05 01:16:45;DEBUG;Epoch Summary|Epoch 195 | valid: ( 479/ 480)MSE: 0.00131|loss: 0.00131|PSNR: 28.89357
+2026-03-05 01:16:46;INFO;Saved latest model in epoch : 195
+2026-03-05 01:17:17;DEBUG;Epoch Summary|Epoch 196 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.07709
+2026-03-05 01:17:19;DEBUG;Epoch Summary|Epoch 196 | valid: ( 479/ 480)MSE: 0.00165|loss: 0.00165|PSNR: 27.87757
+2026-03-05 01:17:19;INFO;Saved latest model in epoch : 196
+2026-03-05 01:17:50;DEBUG;Epoch Summary|Epoch 197 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.17067
+2026-03-05 01:17:53;DEBUG;Epoch Summary|Epoch 197 | valid: ( 479/ 480)MSE: 0.00126|loss: 0.00126|PSNR: 29.06499
+2026-03-05 01:17:53;INFO;Saved latest model in epoch : 197
+2026-03-05 01:18:23;DEBUG;Epoch Summary|Epoch 198 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.27743
+2026-03-05 01:18:25;DEBUG;Epoch Summary|Epoch 198 | valid: ( 479/ 480)MSE: 0.00132|loss: 0.00132|PSNR: 28.85958
+2026-03-05 01:18:26;INFO;Saved latest model in epoch : 198
+2026-03-05 01:18:57;DEBUG;Epoch Summary|Epoch 199 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.09268
+2026-03-05 01:19:00;DEBUG;Epoch Summary|Epoch 199 | valid: ( 479/ 480)MSE: 0.00133|loss: 0.00133|PSNR: 28.80926
+2026-03-05 01:19:00;INFO;Saved latest model in epoch : 199
+2026-03-05 01:19:00;INFO;Saved model milestone in epoch : 199
+2026-03-05 01:19:30;DEBUG;Epoch Summary|Epoch 200 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.26900
+2026-03-05 01:19:32;DEBUG;Epoch Summary|Epoch 200 | valid: ( 479/ 480)MSE: 0.00132|loss: 0.00132|PSNR: 28.83826
+2026-03-05 01:19:33;INFO;Saved latest model in epoch : 200
+2026-03-05 01:20:05;DEBUG;Epoch Summary|Epoch 201 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.06420
+2026-03-05 01:20:08;DEBUG;Epoch Summary|Epoch 201 | valid: ( 479/ 480)MSE: 0.00126|loss: 0.00126|PSNR: 29.08355
+2026-03-05 01:20:08;INFO;Saved latest model in epoch : 201
+2026-03-05 01:20:39;DEBUG;Epoch Summary|Epoch 202 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.20666
+2026-03-05 01:20:41;DEBUG;Epoch Summary|Epoch 202 | valid: ( 479/ 480)MSE: 0.00127|loss: 0.00127|PSNR: 29.03454
+2026-03-05 01:20:41;INFO;Saved latest model in epoch : 202
+2026-03-05 01:21:12;DEBUG;Epoch Summary|Epoch 203 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.28366
+2026-03-05 01:21:15;DEBUG;Epoch Summary|Epoch 203 | valid: ( 479/ 480)MSE: 0.00131|loss: 0.00131|PSNR: 28.92159
+2026-03-05 01:21:15;INFO;Saved latest model in epoch : 203
+2026-03-05 01:21:45;DEBUG;Epoch Summary|Epoch 204 | train: (8000/8000)MSE: 0.00056|loss: 0.00056|PSNR: 33.06714
+2026-03-05 01:21:48;DEBUG;Epoch Summary|Epoch 204 | valid: ( 479/ 480)MSE: 0.00129|loss: 0.00129|PSNR: 29.01319
+2026-03-05 01:21:48;INFO;Saved latest model in epoch : 204
+2026-03-05 01:22:18;DEBUG;Epoch Summary|Epoch 205 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.33064
+2026-03-05 01:22:21;DEBUG;Epoch Summary|Epoch 205 | valid: ( 479/ 480)MSE: 0.00125|loss: 0.00125|PSNR: 29.09757
+2026-03-05 01:22:21;INFO;Saved latest model in epoch : 205
+2026-03-05 01:22:52;DEBUG;Epoch Summary|Epoch 206 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.35899
+2026-03-05 01:22:55;DEBUG;Epoch Summary|Epoch 206 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.26473
+2026-03-05 01:22:55;INFO;Saved latest model in epoch : 206
+2026-03-05 01:22:55;INFO;Saved best model in epoch : 206
+2026-03-05 01:23:26;DEBUG;Epoch Summary|Epoch 207 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.07425
+2026-03-05 01:23:29;DEBUG;Epoch Summary|Epoch 207 | valid: ( 479/ 480)MSE: 0.00131|loss: 0.00131|PSNR: 28.91275
+2026-03-05 01:23:29;INFO;Saved latest model in epoch : 207
+2026-03-05 01:24:00;DEBUG;Epoch Summary|Epoch 208 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.37078
+2026-03-05 01:24:03;DEBUG;Epoch Summary|Epoch 208 | valid: ( 479/ 480)MSE: 0.00127|loss: 0.00127|PSNR: 29.01142
+2026-03-05 01:24:03;INFO;Saved latest model in epoch : 208
+2026-03-05 01:24:33;DEBUG;Epoch Summary|Epoch 209 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.35876
+2026-03-05 01:24:36;DEBUG;Epoch Summary|Epoch 209 | valid: ( 479/ 480)MSE: 0.00130|loss: 0.00130|PSNR: 28.94065
+2026-03-05 01:24:36;INFO;Saved latest model in epoch : 209
+2026-03-05 01:25:07;DEBUG;Epoch Summary|Epoch 210 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.17737
+2026-03-05 01:25:10;DEBUG;Epoch Summary|Epoch 210 | valid: ( 479/ 480)MSE: 0.00130|loss: 0.00130|PSNR: 28.92687
+2026-03-05 01:25:10;INFO;Saved latest model in epoch : 210
+2026-03-05 01:25:39;DEBUG;Epoch Summary|Epoch 211 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.40500
+2026-03-05 01:25:42;DEBUG;Epoch Summary|Epoch 211 | valid: ( 479/ 480)MSE: 0.00125|loss: 0.00125|PSNR: 29.07553
+2026-03-05 01:25:42;INFO;Saved latest model in epoch : 211
+2026-03-05 01:26:13;DEBUG;Epoch Summary|Epoch 212 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.13575
+2026-03-05 01:26:15;DEBUG;Epoch Summary|Epoch 212 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.21022
+2026-03-05 01:26:15;INFO;Saved latest model in epoch : 212
+2026-03-05 01:26:46;DEBUG;Epoch Summary|Epoch 213 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.26330
+2026-03-05 01:26:49;DEBUG;Epoch Summary|Epoch 213 | valid: ( 479/ 480)MSE: 0.00134|loss: 0.00134|PSNR: 28.79796
+2026-03-05 01:26:49;INFO;Saved latest model in epoch : 213
+2026-03-05 01:27:19;DEBUG;Epoch Summary|Epoch 214 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.28083
+2026-03-05 01:27:21;DEBUG;Epoch Summary|Epoch 214 | valid: ( 479/ 480)MSE: 0.00129|loss: 0.00129|PSNR: 28.97252
+2026-03-05 01:27:22;INFO;Saved latest model in epoch : 214
+2026-03-05 01:27:52;DEBUG;Epoch Summary|Epoch 215 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.36799
+2026-03-05 01:27:54;DEBUG;Epoch Summary|Epoch 215 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 28.97385
+2026-03-05 01:27:54;INFO;Saved latest model in epoch : 215
+2026-03-05 01:28:23;DEBUG;Epoch Summary|Epoch 216 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.25749
+2026-03-05 01:28:26;DEBUG;Epoch Summary|Epoch 216 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 28.97528
+2026-03-05 01:28:26;INFO;Saved latest model in epoch : 216
+2026-03-05 01:28:56;DEBUG;Epoch Summary|Epoch 217 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.17501
+2026-03-05 01:28:59;DEBUG;Epoch Summary|Epoch 217 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.20376
+2026-03-05 01:28:59;INFO;Saved latest model in epoch : 217
+2026-03-05 01:29:29;DEBUG;Epoch Summary|Epoch 218 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.46262
+2026-03-05 01:29:31;DEBUG;Epoch Summary|Epoch 218 | valid: ( 479/ 480)MSE: 0.00147|loss: 0.00147|PSNR: 28.39666
+2026-03-05 01:29:31;INFO;Saved latest model in epoch : 218
+2026-03-05 01:30:02;DEBUG;Epoch Summary|Epoch 219 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.23679
+2026-03-05 01:30:04;DEBUG;Epoch Summary|Epoch 219 | valid: ( 479/ 480)MSE: 0.00127|loss: 0.00127|PSNR: 29.02886
+2026-03-05 01:30:04;INFO;Saved latest model in epoch : 219
+2026-03-05 01:30:34;DEBUG;Epoch Summary|Epoch 220 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.21798
+2026-03-05 01:30:36;DEBUG;Epoch Summary|Epoch 220 | valid: ( 479/ 480)MSE: 0.00134|loss: 0.00134|PSNR: 28.77792
+2026-03-05 01:30:36;INFO;Saved latest model in epoch : 220
+2026-03-05 01:31:07;DEBUG;Epoch Summary|Epoch 221 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.33683
+2026-03-05 01:31:10;DEBUG;Epoch Summary|Epoch 221 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.11294
+2026-03-05 01:31:10;INFO;Saved latest model in epoch : 221
+2026-03-05 01:31:40;DEBUG;Epoch Summary|Epoch 222 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.32164
+2026-03-05 01:31:42;DEBUG;Epoch Summary|Epoch 222 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.32212
+2026-03-05 01:31:42;INFO;Saved latest model in epoch : 222
+2026-03-05 01:31:42;INFO;Saved best model in epoch : 222
+2026-03-05 01:32:13;DEBUG;Epoch Summary|Epoch 223 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.35190
+2026-03-05 01:32:15;DEBUG;Epoch Summary|Epoch 223 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.22907
+2026-03-05 01:32:15;INFO;Saved latest model in epoch : 223
+2026-03-05 01:32:47;DEBUG;Epoch Summary|Epoch 224 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.37945
+2026-03-05 01:32:49;DEBUG;Epoch Summary|Epoch 224 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.34749
+2026-03-05 01:32:49;INFO;Saved latest model in epoch : 224
+2026-03-05 01:33:20;DEBUG;Epoch Summary|Epoch 225 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.28996
+2026-03-05 01:33:23;DEBUG;Epoch Summary|Epoch 225 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.22829
+2026-03-05 01:33:23;INFO;Saved latest model in epoch : 225
+2026-03-05 01:33:52;DEBUG;Epoch Summary|Epoch 226 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.28060
+2026-03-05 01:33:54;DEBUG;Epoch Summary|Epoch 226 | valid: ( 479/ 480)MSE: 0.00125|loss: 0.00125|PSNR: 29.08253
+2026-03-05 01:33:55;INFO;Saved latest model in epoch : 226
+2026-03-05 01:34:24;DEBUG;Epoch Summary|Epoch 227 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.39679
+2026-03-05 01:34:26;DEBUG;Epoch Summary|Epoch 227 | valid: ( 479/ 480)MSE: 0.00131|loss: 0.00131|PSNR: 28.87577
+2026-03-05 01:34:26;INFO;Saved latest model in epoch : 227
+2026-03-05 01:34:57;DEBUG;Epoch Summary|Epoch 228 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.38915
+2026-03-05 01:34:59;DEBUG;Epoch Summary|Epoch 228 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.13228
+2026-03-05 01:34:59;INFO;Saved latest model in epoch : 228
+2026-03-05 01:35:29;DEBUG;Epoch Summary|Epoch 229 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.20390
+2026-03-05 01:35:32;DEBUG;Epoch Summary|Epoch 229 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.25739
+2026-03-05 01:35:32;INFO;Saved latest model in epoch : 229
+2026-03-05 01:36:01;DEBUG;Epoch Summary|Epoch 230 | train: (8000/8000)MSE: 0.00054|loss: 0.00054|PSNR: 33.27145
+2026-03-05 01:36:04;DEBUG;Epoch Summary|Epoch 230 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.10623
+2026-03-05 01:36:04;INFO;Saved latest model in epoch : 230
+2026-03-05 01:36:34;DEBUG;Epoch Summary|Epoch 231 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.34509
+2026-03-05 01:36:36;DEBUG;Epoch Summary|Epoch 231 | valid: ( 479/ 480)MSE: 0.00120|loss: 0.00120|PSNR: 29.24533
+2026-03-05 01:36:36;INFO;Saved latest model in epoch : 231
+2026-03-05 01:37:06;DEBUG;Epoch Summary|Epoch 232 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.35768
+2026-03-05 01:37:09;DEBUG;Epoch Summary|Epoch 232 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.14430
+2026-03-05 01:37:09;INFO;Saved latest model in epoch : 232
+2026-03-05 01:37:39;DEBUG;Epoch Summary|Epoch 233 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.26765
+2026-03-05 01:37:41;DEBUG;Epoch Summary|Epoch 233 | valid: ( 479/ 480)MSE: 0.00125|loss: 0.00125|PSNR: 29.13700
+2026-03-05 01:37:41;INFO;Saved latest model in epoch : 233
+2026-03-05 01:38:11;DEBUG;Epoch Summary|Epoch 234 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.42359
+2026-03-05 01:38:14;DEBUG;Epoch Summary|Epoch 234 | valid: ( 479/ 480)MSE: 0.00129|loss: 0.00129|PSNR: 28.95863
+2026-03-05 01:38:14;INFO;Saved latest model in epoch : 234
+2026-03-05 01:38:45;DEBUG;Epoch Summary|Epoch 235 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.36302
+2026-03-05 01:38:47;DEBUG;Epoch Summary|Epoch 235 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.26948
+2026-03-05 01:38:47;INFO;Saved latest model in epoch : 235
+2026-03-05 01:39:20;DEBUG;Epoch Summary|Epoch 236 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.49959
+2026-03-05 01:39:22;DEBUG;Epoch Summary|Epoch 236 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.24109
+2026-03-05 01:39:22;INFO;Saved latest model in epoch : 236
+2026-03-05 01:39:53;DEBUG;Epoch Summary|Epoch 237 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.30271
+2026-03-05 01:39:55;DEBUG;Epoch Summary|Epoch 237 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.36054
+2026-03-05 01:39:55;INFO;Saved latest model in epoch : 237
+2026-03-05 01:39:55;INFO;Saved best model in epoch : 237
+2026-03-05 01:40:28;DEBUG;Epoch Summary|Epoch 238 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.37293
+2026-03-05 01:40:30;DEBUG;Epoch Summary|Epoch 238 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.40457
+2026-03-05 01:40:30;INFO;Saved latest model in epoch : 238
+2026-03-05 01:40:30;INFO;Saved best model in epoch : 238
+2026-03-05 01:41:01;DEBUG;Epoch Summary|Epoch 239 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.51254
+2026-03-05 01:41:03;DEBUG;Epoch Summary|Epoch 239 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.22633
+2026-03-05 01:41:04;INFO;Saved latest model in epoch : 239
+2026-03-05 01:41:33;DEBUG;Epoch Summary|Epoch 240 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.37340
+2026-03-05 01:41:35;DEBUG;Epoch Summary|Epoch 240 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.27594
+2026-03-05 01:41:35;INFO;Saved latest model in epoch : 240
+2026-03-05 01:42:05;DEBUG;Epoch Summary|Epoch 241 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.34056
+2026-03-05 01:42:07;DEBUG;Epoch Summary|Epoch 241 | valid: ( 479/ 480)MSE: 0.00126|loss: 0.00126|PSNR: 29.07042
+2026-03-05 01:42:07;INFO;Saved latest model in epoch : 241
+2026-03-05 01:42:37;DEBUG;Epoch Summary|Epoch 242 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.37797
+2026-03-05 01:42:39;DEBUG;Epoch Summary|Epoch 242 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.37813
+2026-03-05 01:42:39;INFO;Saved latest model in epoch : 242
+2026-03-05 01:43:10;DEBUG;Epoch Summary|Epoch 243 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.38644
+2026-03-05 01:43:12;DEBUG;Epoch Summary|Epoch 243 | valid: ( 479/ 480)MSE: 0.00123|loss: 0.00123|PSNR: 29.15999
+2026-03-05 01:43:12;INFO;Saved latest model in epoch : 243
+2026-03-05 01:43:43;DEBUG;Epoch Summary|Epoch 244 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.48416
+2026-03-05 01:43:45;DEBUG;Epoch Summary|Epoch 244 | valid: ( 479/ 480)MSE: 0.00132|loss: 0.00132|PSNR: 28.85474
+2026-03-05 01:43:45;INFO;Saved latest model in epoch : 244
+2026-03-05 01:44:16;DEBUG;Epoch Summary|Epoch 245 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.30444
+2026-03-05 01:44:19;DEBUG;Epoch Summary|Epoch 245 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.31834
+2026-03-05 01:44:19;INFO;Saved latest model in epoch : 245
+2026-03-05 01:44:50;DEBUG;Epoch Summary|Epoch 246 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.44729
+2026-03-05 01:44:52;DEBUG;Epoch Summary|Epoch 246 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.52705
+2026-03-05 01:44:52;INFO;Saved latest model in epoch : 246
+2026-03-05 01:44:52;INFO;Saved best model in epoch : 246
+2026-03-05 01:45:22;DEBUG;Epoch Summary|Epoch 247 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.39697
+2026-03-05 01:45:24;DEBUG;Epoch Summary|Epoch 247 | valid: ( 479/ 480)MSE: 0.00123|loss: 0.00123|PSNR: 29.16922
+2026-03-05 01:45:24;INFO;Saved latest model in epoch : 247
+2026-03-05 01:45:55;DEBUG;Epoch Summary|Epoch 248 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.27480
+2026-03-05 01:45:57;DEBUG;Epoch Summary|Epoch 248 | valid: ( 479/ 480)MSE: 0.00126|loss: 0.00126|PSNR: 29.07173
+2026-03-05 01:45:57;INFO;Saved latest model in epoch : 248
+2026-03-05 01:46:27;DEBUG;Epoch Summary|Epoch 249 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.42261
+2026-03-05 01:46:30;DEBUG;Epoch Summary|Epoch 249 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.57957
+2026-03-05 01:46:30;INFO;Saved latest model in epoch : 249
+2026-03-05 01:46:30;INFO;Saved model milestone in epoch : 249
+2026-03-05 01:46:30;INFO;Saved best model in epoch : 249
+2026-03-05 01:47:00;DEBUG;Epoch Summary|Epoch 250 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.38873
+2026-03-05 01:47:02;DEBUG;Epoch Summary|Epoch 250 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.15587
+2026-03-05 01:47:02;INFO;Saved latest model in epoch : 250
+2026-03-05 01:47:31;DEBUG;Epoch Summary|Epoch 251 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.45478
+2026-03-05 01:47:33;DEBUG;Epoch Summary|Epoch 251 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.36138
+2026-03-05 01:47:33;INFO;Saved latest model in epoch : 251
+2026-03-05 01:48:03;DEBUG;Epoch Summary|Epoch 252 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.39211
+2026-03-05 01:48:06;DEBUG;Epoch Summary|Epoch 252 | valid: ( 479/ 480)MSE: 0.00120|loss: 0.00120|PSNR: 29.29261
+2026-03-05 01:48:06;INFO;Saved latest model in epoch : 252
+2026-03-05 01:48:36;DEBUG;Epoch Summary|Epoch 253 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.51891
+2026-03-05 01:48:38;DEBUG;Epoch Summary|Epoch 253 | valid: ( 479/ 480)MSE: 0.00127|loss: 0.00127|PSNR: 29.04727
+2026-03-05 01:48:38;INFO;Saved latest model in epoch : 253
+2026-03-05 01:49:08;DEBUG;Epoch Summary|Epoch 254 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.35375
+2026-03-05 01:49:11;DEBUG;Epoch Summary|Epoch 254 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.49070
+2026-03-05 01:49:11;INFO;Saved latest model in epoch : 254
+2026-03-05 01:49:40;DEBUG;Epoch Summary|Epoch 255 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.51341
+2026-03-05 01:49:43;DEBUG;Epoch Summary|Epoch 255 | valid: ( 479/ 480)MSE: 0.00130|loss: 0.00130|PSNR: 28.91389
+2026-03-05 01:49:43;INFO;Saved latest model in epoch : 255
+2026-03-05 01:50:13;DEBUG;Epoch Summary|Epoch 256 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.45335
+2026-03-05 01:50:15;DEBUG;Epoch Summary|Epoch 256 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.31699
+2026-03-05 01:50:15;INFO;Saved latest model in epoch : 256
+2026-03-05 01:50:44;DEBUG;Epoch Summary|Epoch 257 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.30252
+2026-03-05 01:50:47;DEBUG;Epoch Summary|Epoch 257 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.37689
+2026-03-05 01:50:47;INFO;Saved latest model in epoch : 257
+2026-03-05 01:51:17;DEBUG;Epoch Summary|Epoch 258 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.57366
+2026-03-05 01:51:19;DEBUG;Epoch Summary|Epoch 258 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.31208
+2026-03-05 01:51:20;INFO;Saved latest model in epoch : 258
+2026-03-05 01:51:51;DEBUG;Epoch Summary|Epoch 259 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.46682
+2026-03-05 01:51:53;DEBUG;Epoch Summary|Epoch 259 | valid: ( 479/ 480)MSE: 0.00128|loss: 0.00128|PSNR: 29.01376
+2026-03-05 01:51:53;INFO;Saved latest model in epoch : 259
+2026-03-05 01:52:24;DEBUG;Epoch Summary|Epoch 260 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.48513
+2026-03-05 01:52:26;DEBUG;Epoch Summary|Epoch 260 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.31918
+2026-03-05 01:52:26;INFO;Saved latest model in epoch : 260
+2026-03-05 01:52:56;DEBUG;Epoch Summary|Epoch 261 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.55768
+2026-03-05 01:52:59;DEBUG;Epoch Summary|Epoch 261 | valid: ( 479/ 480)MSE: 0.00123|loss: 0.00123|PSNR: 29.18093
+2026-03-05 01:52:59;INFO;Saved latest model in epoch : 261
+2026-03-05 01:53:30;DEBUG;Epoch Summary|Epoch 262 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.43557
+2026-03-05 01:53:32;DEBUG;Epoch Summary|Epoch 262 | valid: ( 479/ 480)MSE: 0.00120|loss: 0.00120|PSNR: 29.26037
+2026-03-05 01:53:32;INFO;Saved latest model in epoch : 262
+2026-03-05 01:54:03;DEBUG;Epoch Summary|Epoch 263 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.35764
+2026-03-05 01:54:05;DEBUG;Epoch Summary|Epoch 263 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.14462
+2026-03-05 01:54:05;INFO;Saved latest model in epoch : 263
+2026-03-05 01:54:36;DEBUG;Epoch Summary|Epoch 264 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.52892
+2026-03-05 01:54:38;DEBUG;Epoch Summary|Epoch 264 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.13672
+2026-03-05 01:54:38;INFO;Saved latest model in epoch : 264
+2026-03-05 01:55:07;DEBUG;Epoch Summary|Epoch 265 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.61486
+2026-03-05 01:55:10;DEBUG;Epoch Summary|Epoch 265 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.28283
+2026-03-05 01:55:10;INFO;Saved latest model in epoch : 265
+2026-03-05 01:55:41;DEBUG;Epoch Summary|Epoch 266 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.61436
+2026-03-05 01:55:43;DEBUG;Epoch Summary|Epoch 266 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.36557
+2026-03-05 01:55:43;INFO;Saved latest model in epoch : 266
+2026-03-05 01:56:14;DEBUG;Epoch Summary|Epoch 267 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.47273
+2026-03-05 01:56:16;DEBUG;Epoch Summary|Epoch 267 | valid: ( 479/ 480)MSE: 0.00126|loss: 0.00126|PSNR: 29.04505
+2026-03-05 01:56:16;INFO;Saved latest model in epoch : 267
+2026-03-05 01:56:46;DEBUG;Epoch Summary|Epoch 268 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.52079
+2026-03-05 01:56:48;DEBUG;Epoch Summary|Epoch 268 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.35401
+2026-03-05 01:56:48;INFO;Saved latest model in epoch : 268
+2026-03-05 01:57:19;DEBUG;Epoch Summary|Epoch 269 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.45634
+2026-03-05 01:57:21;DEBUG;Epoch Summary|Epoch 269 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.38386
+2026-03-05 01:57:21;INFO;Saved latest model in epoch : 269
+2026-03-05 01:57:51;DEBUG;Epoch Summary|Epoch 270 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.53075
+2026-03-05 01:57:53;DEBUG;Epoch Summary|Epoch 270 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.18790
+2026-03-05 01:57:53;INFO;Saved latest model in epoch : 270
+2026-03-05 01:58:22;DEBUG;Epoch Summary|Epoch 271 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.56754
+2026-03-05 01:58:25;DEBUG;Epoch Summary|Epoch 271 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.38299
+2026-03-05 01:58:25;INFO;Saved latest model in epoch : 271
+2026-03-05 01:58:55;DEBUG;Epoch Summary|Epoch 272 | train: (8000/8000)MSE: 0.00052|loss: 0.00052|PSNR: 33.39830
+2026-03-05 01:58:58;DEBUG;Epoch Summary|Epoch 272 | valid: ( 479/ 480)MSE: 0.00120|loss: 0.00120|PSNR: 29.29751
+2026-03-05 01:58:58;INFO;Saved latest model in epoch : 272
+2026-03-05 01:59:28;DEBUG;Epoch Summary|Epoch 273 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.34044
+2026-03-05 01:59:30;DEBUG;Epoch Summary|Epoch 273 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.34462
+2026-03-05 01:59:30;INFO;Saved latest model in epoch : 273
+2026-03-05 02:00:00;DEBUG;Epoch Summary|Epoch 274 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.54247
+2026-03-05 02:00:03;DEBUG;Epoch Summary|Epoch 274 | valid: ( 479/ 480)MSE: 0.00123|loss: 0.00123|PSNR: 29.12752
+2026-03-05 02:00:03;INFO;Saved latest model in epoch : 274
+2026-03-05 02:00:34;DEBUG;Epoch Summary|Epoch 275 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.51414
+2026-03-05 02:00:37;DEBUG;Epoch Summary|Epoch 275 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.52072
+2026-03-05 02:00:37;INFO;Saved latest model in epoch : 275
+2026-03-05 02:01:06;DEBUG;Epoch Summary|Epoch 276 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.68759
+2026-03-05 02:01:09;DEBUG;Epoch Summary|Epoch 276 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.26898
+2026-03-05 02:01:09;INFO;Saved latest model in epoch : 276
+2026-03-05 02:01:39;DEBUG;Epoch Summary|Epoch 277 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.55641
+2026-03-05 02:01:41;DEBUG;Epoch Summary|Epoch 277 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.45699
+2026-03-05 02:01:41;INFO;Saved latest model in epoch : 277
+2026-03-05 02:02:10;DEBUG;Epoch Summary|Epoch 278 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.53569
+2026-03-05 02:02:13;DEBUG;Epoch Summary|Epoch 278 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.37797
+2026-03-05 02:02:13;INFO;Saved latest model in epoch : 278
+2026-03-05 02:02:42;DEBUG;Epoch Summary|Epoch 279 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.51520
+2026-03-05 02:02:45;DEBUG;Epoch Summary|Epoch 279 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.41241
+2026-03-05 02:02:45;INFO;Saved latest model in epoch : 279
+2026-03-05 02:03:15;DEBUG;Epoch Summary|Epoch 280 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.46278
+2026-03-05 02:03:18;DEBUG;Epoch Summary|Epoch 280 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.28060
+2026-03-05 02:03:18;INFO;Saved latest model in epoch : 280
+2026-03-05 02:03:49;DEBUG;Epoch Summary|Epoch 281 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.49030
+2026-03-05 02:03:51;DEBUG;Epoch Summary|Epoch 281 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.33795
+2026-03-05 02:03:51;INFO;Saved latest model in epoch : 281
+2026-03-05 02:04:21;DEBUG;Epoch Summary|Epoch 282 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.53618
+2026-03-05 02:04:24;DEBUG;Epoch Summary|Epoch 282 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.58627
+2026-03-05 02:04:24;INFO;Saved latest model in epoch : 282
+2026-03-05 02:04:54;DEBUG;Epoch Summary|Epoch 283 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.60086
+2026-03-05 02:04:57;DEBUG;Epoch Summary|Epoch 283 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.53521
+2026-03-05 02:04:57;INFO;Saved latest model in epoch : 283
+2026-03-05 02:05:27;DEBUG;Epoch Summary|Epoch 284 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.57598
+2026-03-05 02:05:29;DEBUG;Epoch Summary|Epoch 284 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.47663
+2026-03-05 02:05:29;INFO;Saved latest model in epoch : 284
+2026-03-05 02:06:00;DEBUG;Epoch Summary|Epoch 285 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.55794
+2026-03-05 02:06:02;DEBUG;Epoch Summary|Epoch 285 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.47180
+2026-03-05 02:06:02;INFO;Saved latest model in epoch : 285
+2026-03-05 02:06:32;DEBUG;Epoch Summary|Epoch 286 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.54242
+2026-03-05 02:06:34;DEBUG;Epoch Summary|Epoch 286 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.22182
+2026-03-05 02:06:34;INFO;Saved latest model in epoch : 286
+2026-03-05 02:07:04;DEBUG;Epoch Summary|Epoch 287 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.64691
+2026-03-05 02:07:06;DEBUG;Epoch Summary|Epoch 287 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.50500
+2026-03-05 02:07:06;INFO;Saved latest model in epoch : 287
+2026-03-05 02:07:35;DEBUG;Epoch Summary|Epoch 288 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.51015
+2026-03-05 02:07:38;DEBUG;Epoch Summary|Epoch 288 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.51850
+2026-03-05 02:07:38;INFO;Saved latest model in epoch : 288
+2026-03-05 02:08:08;DEBUG;Epoch Summary|Epoch 289 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.71495
+2026-03-05 02:08:11;DEBUG;Epoch Summary|Epoch 289 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.33061
+2026-03-05 02:08:11;INFO;Saved latest model in epoch : 289
+2026-03-05 02:08:40;DEBUG;Epoch Summary|Epoch 290 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.43352
+2026-03-05 02:08:43;DEBUG;Epoch Summary|Epoch 290 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.38602
+2026-03-05 02:08:43;INFO;Saved latest model in epoch : 290
+2026-03-05 02:09:14;DEBUG;Epoch Summary|Epoch 291 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.58183
+2026-03-05 02:09:16;DEBUG;Epoch Summary|Epoch 291 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.31414
+2026-03-05 02:09:16;INFO;Saved latest model in epoch : 291
+2026-03-05 02:09:47;DEBUG;Epoch Summary|Epoch 292 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.68739
+2026-03-05 02:09:49;DEBUG;Epoch Summary|Epoch 292 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.46991
+2026-03-05 02:09:49;INFO;Saved latest model in epoch : 292
+2026-03-05 02:10:19;DEBUG;Epoch Summary|Epoch 293 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.54910
+2026-03-05 02:10:21;DEBUG;Epoch Summary|Epoch 293 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.42715
+2026-03-05 02:10:21;INFO;Saved latest model in epoch : 293
+2026-03-05 02:10:51;DEBUG;Epoch Summary|Epoch 294 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.69835
+2026-03-05 02:10:54;DEBUG;Epoch Summary|Epoch 294 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.35410
+2026-03-05 02:10:54;INFO;Saved latest model in epoch : 294
+2026-03-05 02:11:24;DEBUG;Epoch Summary|Epoch 295 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.52861
+2026-03-05 02:11:26;DEBUG;Epoch Summary|Epoch 295 | valid: ( 479/ 480)MSE: 0.00120|loss: 0.00120|PSNR: 29.29368
+2026-03-05 02:11:26;INFO;Saved latest model in epoch : 295
+2026-03-05 02:11:55;DEBUG;Epoch Summary|Epoch 296 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.53229
+2026-03-05 02:11:58;DEBUG;Epoch Summary|Epoch 296 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.32221
+2026-03-05 02:11:58;INFO;Saved latest model in epoch : 296
+2026-03-05 02:12:28;DEBUG;Epoch Summary|Epoch 297 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.67166
+2026-03-05 02:12:30;DEBUG;Epoch Summary|Epoch 297 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.55124
+2026-03-05 02:12:30;INFO;Saved latest model in epoch : 297
+2026-03-05 02:13:01;DEBUG;Epoch Summary|Epoch 298 | train: (8000/8000)MSE: 0.00055|loss: 0.00055|PSNR: 33.34286
+2026-03-05 02:13:03;DEBUG;Epoch Summary|Epoch 298 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.65957
+2026-03-05 02:13:03;INFO;Saved latest model in epoch : 298
+2026-03-05 02:13:03;INFO;Saved best model in epoch : 298
+2026-03-05 02:13:34;DEBUG;Epoch Summary|Epoch 299 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.60521
+2026-03-05 02:13:36;DEBUG;Epoch Summary|Epoch 299 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.69483
+2026-03-05 02:13:36;INFO;Saved latest model in epoch : 299
+2026-03-05 02:13:36;INFO;Saved model milestone in epoch : 299
+2026-03-05 02:13:36;INFO;Saved best model in epoch : 299
+2026-03-05 02:14:06;DEBUG;Epoch Summary|Epoch 300 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.59131
+2026-03-05 02:14:08;DEBUG;Epoch Summary|Epoch 300 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.33131
+2026-03-05 02:14:08;INFO;Saved latest model in epoch : 300
+2026-03-05 02:14:39;DEBUG;Epoch Summary|Epoch 301 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.60712
+2026-03-05 02:14:41;DEBUG;Epoch Summary|Epoch 301 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.34096
+2026-03-05 02:14:41;INFO;Saved latest model in epoch : 301
+2026-03-05 02:15:13;DEBUG;Epoch Summary|Epoch 302 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.49374
+2026-03-05 02:15:16;DEBUG;Epoch Summary|Epoch 302 | valid: ( 479/ 480)MSE: 0.00129|loss: 0.00129|PSNR: 28.97570
+2026-03-05 02:15:16;INFO;Saved latest model in epoch : 302
+2026-03-05 02:15:46;DEBUG;Epoch Summary|Epoch 303 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.55388
+2026-03-05 02:15:48;DEBUG;Epoch Summary|Epoch 303 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.21183
+2026-03-05 02:15:48;INFO;Saved latest model in epoch : 303
+2026-03-05 02:16:19;DEBUG;Epoch Summary|Epoch 304 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.59193
+2026-03-05 02:16:21;DEBUG;Epoch Summary|Epoch 304 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.41571
+2026-03-05 02:16:21;INFO;Saved latest model in epoch : 304
+2026-03-05 02:16:51;DEBUG;Epoch Summary|Epoch 305 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.58764
+2026-03-05 02:16:54;DEBUG;Epoch Summary|Epoch 305 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.57328
+2026-03-05 02:16:54;INFO;Saved latest model in epoch : 305
+2026-03-05 02:17:23;DEBUG;Epoch Summary|Epoch 306 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.59235
+2026-03-05 02:17:26;DEBUG;Epoch Summary|Epoch 306 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.37051
+2026-03-05 02:17:26;INFO;Saved latest model in epoch : 306
+2026-03-05 02:17:56;DEBUG;Epoch Summary|Epoch 307 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.79639
+2026-03-05 02:17:59;DEBUG;Epoch Summary|Epoch 307 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.19983
+2026-03-05 02:17:59;INFO;Saved latest model in epoch : 307
+2026-03-05 02:18:29;DEBUG;Epoch Summary|Epoch 308 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.61314
+2026-03-05 02:18:32;DEBUG;Epoch Summary|Epoch 308 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.61596
+2026-03-05 02:18:32;INFO;Saved latest model in epoch : 308
+2026-03-05 02:19:03;DEBUG;Epoch Summary|Epoch 309 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.66201
+2026-03-05 02:19:06;DEBUG;Epoch Summary|Epoch 309 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.36552
+2026-03-05 02:19:06;INFO;Saved latest model in epoch : 309
+2026-03-05 02:19:36;DEBUG;Epoch Summary|Epoch 310 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.53669
+2026-03-05 02:19:38;DEBUG;Epoch Summary|Epoch 310 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.61395
+2026-03-05 02:19:38;INFO;Saved latest model in epoch : 310
+2026-03-05 02:20:10;DEBUG;Epoch Summary|Epoch 311 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.66185
+2026-03-05 02:20:13;DEBUG;Epoch Summary|Epoch 311 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.42278
+2026-03-05 02:20:13;INFO;Saved latest model in epoch : 311
+2026-03-05 02:20:43;DEBUG;Epoch Summary|Epoch 312 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.53727
+2026-03-05 02:20:45;DEBUG;Epoch Summary|Epoch 312 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.52310
+2026-03-05 02:20:45;INFO;Saved latest model in epoch : 312
+2026-03-05 02:21:15;DEBUG;Epoch Summary|Epoch 313 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.64129
+2026-03-05 02:21:18;DEBUG;Epoch Summary|Epoch 313 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.56964
+2026-03-05 02:21:18;INFO;Saved latest model in epoch : 313
+2026-03-05 02:21:48;DEBUG;Epoch Summary|Epoch 314 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.78993
+2026-03-05 02:21:50;DEBUG;Epoch Summary|Epoch 314 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.50321
+2026-03-05 02:21:50;INFO;Saved latest model in epoch : 314
+2026-03-05 02:22:20;DEBUG;Epoch Summary|Epoch 315 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.56410
+2026-03-05 02:22:23;DEBUG;Epoch Summary|Epoch 315 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.41701
+2026-03-05 02:22:23;INFO;Saved latest model in epoch : 315
+2026-03-05 02:22:53;DEBUG;Epoch Summary|Epoch 316 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.61004
+2026-03-05 02:22:55;DEBUG;Epoch Summary|Epoch 316 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.35076
+2026-03-05 02:22:56;INFO;Saved latest model in epoch : 316
+2026-03-05 02:23:26;DEBUG;Epoch Summary|Epoch 317 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.61674
+2026-03-05 02:23:28;DEBUG;Epoch Summary|Epoch 317 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.44232
+2026-03-05 02:23:28;INFO;Saved latest model in epoch : 317
+2026-03-05 02:23:58;DEBUG;Epoch Summary|Epoch 318 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.71345
+2026-03-05 02:24:01;DEBUG;Epoch Summary|Epoch 318 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.45536
+2026-03-05 02:24:01;INFO;Saved latest model in epoch : 318
+2026-03-05 02:24:30;DEBUG;Epoch Summary|Epoch 319 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.65911
+2026-03-05 02:24:33;DEBUG;Epoch Summary|Epoch 319 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.18829
+2026-03-05 02:24:33;INFO;Saved latest model in epoch : 319
+2026-03-05 02:25:04;DEBUG;Epoch Summary|Epoch 320 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.68854
+2026-03-05 02:25:06;DEBUG;Epoch Summary|Epoch 320 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.37207
+2026-03-05 02:25:06;INFO;Saved latest model in epoch : 320
+2026-03-05 02:25:37;DEBUG;Epoch Summary|Epoch 321 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.77613
+2026-03-05 02:25:39;DEBUG;Epoch Summary|Epoch 321 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.34818
+2026-03-05 02:25:40;INFO;Saved latest model in epoch : 321
+2026-03-05 02:26:10;DEBUG;Epoch Summary|Epoch 322 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.49689
+2026-03-05 02:26:13;DEBUG;Epoch Summary|Epoch 322 | valid: ( 479/ 480)MSE: 0.00141|loss: 0.00141|PSNR: 28.58324
+2026-03-05 02:26:13;INFO;Saved latest model in epoch : 322
+2026-03-05 02:26:43;DEBUG;Epoch Summary|Epoch 323 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.65914
+2026-03-05 02:26:46;DEBUG;Epoch Summary|Epoch 323 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.80827
+2026-03-05 02:26:46;INFO;Saved latest model in epoch : 323
+2026-03-05 02:26:46;INFO;Saved best model in epoch : 323
+2026-03-05 02:27:16;DEBUG;Epoch Summary|Epoch 324 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.60595
+2026-03-05 02:27:19;DEBUG;Epoch Summary|Epoch 324 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.63787
+2026-03-05 02:27:19;INFO;Saved latest model in epoch : 324
+2026-03-05 02:27:49;DEBUG;Epoch Summary|Epoch 325 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.63233
+2026-03-05 02:27:52;DEBUG;Epoch Summary|Epoch 325 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.38273
+2026-03-05 02:27:52;INFO;Saved latest model in epoch : 325
+2026-03-05 02:28:21;DEBUG;Epoch Summary|Epoch 326 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.79351
+2026-03-05 02:28:24;DEBUG;Epoch Summary|Epoch 326 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.67281
+2026-03-05 02:28:24;INFO;Saved latest model in epoch : 326
+2026-03-05 02:28:54;DEBUG;Epoch Summary|Epoch 327 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.81245
+2026-03-05 02:28:57;DEBUG;Epoch Summary|Epoch 327 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.56953
+2026-03-05 02:28:57;INFO;Saved latest model in epoch : 327
+2026-03-05 02:29:28;DEBUG;Epoch Summary|Epoch 328 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.66611
+2026-03-05 02:29:31;DEBUG;Epoch Summary|Epoch 328 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.35161
+2026-03-05 02:29:31;INFO;Saved latest model in epoch : 328
+2026-03-05 02:30:02;DEBUG;Epoch Summary|Epoch 329 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.64371
+2026-03-05 02:30:04;DEBUG;Epoch Summary|Epoch 329 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.45224
+2026-03-05 02:30:04;INFO;Saved latest model in epoch : 329
+2026-03-05 02:30:35;DEBUG;Epoch Summary|Epoch 330 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.78337
+2026-03-05 02:30:37;DEBUG;Epoch Summary|Epoch 330 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.43979
+2026-03-05 02:30:37;INFO;Saved latest model in epoch : 330
+2026-03-05 02:31:07;DEBUG;Epoch Summary|Epoch 331 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.73992
+2026-03-05 02:31:10;DEBUG;Epoch Summary|Epoch 331 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.41317
+2026-03-05 02:31:10;INFO;Saved latest model in epoch : 331
+2026-03-05 02:31:40;DEBUG;Epoch Summary|Epoch 332 | train: (8000/8000)MSE: 0.00058|loss: 0.00058|PSNR: 33.10038
+2026-03-05 02:31:43;DEBUG;Epoch Summary|Epoch 332 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.43940
+2026-03-05 02:31:43;INFO;Saved latest model in epoch : 332
+2026-03-05 02:32:13;DEBUG;Epoch Summary|Epoch 333 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.72969
+2026-03-05 02:32:16;DEBUG;Epoch Summary|Epoch 333 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.54937
+2026-03-05 02:32:16;INFO;Saved latest model in epoch : 333
+2026-03-05 02:32:47;DEBUG;Epoch Summary|Epoch 334 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.61218
+2026-03-05 02:32:49;DEBUG;Epoch Summary|Epoch 334 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.78248
+2026-03-05 02:32:49;INFO;Saved latest model in epoch : 334
+2026-03-05 02:33:21;DEBUG;Epoch Summary|Epoch 335 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.74508
+2026-03-05 02:33:23;DEBUG;Epoch Summary|Epoch 335 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.53875
+2026-03-05 02:33:23;INFO;Saved latest model in epoch : 335
+2026-03-05 02:33:54;DEBUG;Epoch Summary|Epoch 336 | train: (8000/8000)MSE: 0.00051|loss: 0.00051|PSNR: 33.51317
+2026-03-05 02:33:57;DEBUG;Epoch Summary|Epoch 336 | valid: ( 479/ 480)MSE: 0.00120|loss: 0.00120|PSNR: 29.28208
+2026-03-05 02:33:57;INFO;Saved latest model in epoch : 336
+2026-03-05 02:34:28;DEBUG;Epoch Summary|Epoch 337 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.82114
+2026-03-05 02:34:30;DEBUG;Epoch Summary|Epoch 337 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.50444
+2026-03-05 02:34:30;INFO;Saved latest model in epoch : 337
+2026-03-05 02:35:00;DEBUG;Epoch Summary|Epoch 338 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.74537
+2026-03-05 02:35:03;DEBUG;Epoch Summary|Epoch 338 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.55289
+2026-03-05 02:35:03;INFO;Saved latest model in epoch : 338
+2026-03-05 02:35:34;DEBUG;Epoch Summary|Epoch 339 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.72438
+2026-03-05 02:35:37;DEBUG;Epoch Summary|Epoch 339 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.70195
+2026-03-05 02:35:37;INFO;Saved latest model in epoch : 339
+2026-03-05 02:36:07;DEBUG;Epoch Summary|Epoch 340 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.73772
+2026-03-05 02:36:09;DEBUG;Epoch Summary|Epoch 340 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.78366
+2026-03-05 02:36:09;INFO;Saved latest model in epoch : 340
+2026-03-05 02:36:41;DEBUG;Epoch Summary|Epoch 341 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.68881
+2026-03-05 02:36:44;DEBUG;Epoch Summary|Epoch 341 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.33498
+2026-03-05 02:36:44;INFO;Saved latest model in epoch : 341
+2026-03-05 02:37:16;DEBUG;Epoch Summary|Epoch 342 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.76539
+2026-03-05 02:37:18;DEBUG;Epoch Summary|Epoch 342 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.78618
+2026-03-05 02:37:18;INFO;Saved latest model in epoch : 342
+2026-03-05 02:37:49;DEBUG;Epoch Summary|Epoch 343 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.67841
+2026-03-05 02:37:52;DEBUG;Epoch Summary|Epoch 343 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.45078
+2026-03-05 02:37:52;INFO;Saved latest model in epoch : 343
+2026-03-05 02:38:22;DEBUG;Epoch Summary|Epoch 344 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.80151
+2026-03-05 02:38:25;DEBUG;Epoch Summary|Epoch 344 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.33850
+2026-03-05 02:38:25;INFO;Saved latest model in epoch : 344
+2026-03-05 02:38:55;DEBUG;Epoch Summary|Epoch 345 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.74542
+2026-03-05 02:38:57;DEBUG;Epoch Summary|Epoch 345 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.61765
+2026-03-05 02:38:57;INFO;Saved latest model in epoch : 345
+2026-03-05 02:39:26;DEBUG;Epoch Summary|Epoch 346 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.66000
+2026-03-05 02:39:29;DEBUG;Epoch Summary|Epoch 346 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.18859
+2026-03-05 02:39:29;INFO;Saved latest model in epoch : 346
+2026-03-05 02:39:58;DEBUG;Epoch Summary|Epoch 347 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.70209
+2026-03-05 02:40:01;DEBUG;Epoch Summary|Epoch 347 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.74781
+2026-03-05 02:40:01;INFO;Saved latest model in epoch : 347
+2026-03-05 02:40:32;DEBUG;Epoch Summary|Epoch 348 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.73497
+2026-03-05 02:40:34;DEBUG;Epoch Summary|Epoch 348 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.55957
+2026-03-05 02:40:34;INFO;Saved latest model in epoch : 348
+2026-03-05 02:41:04;DEBUG;Epoch Summary|Epoch 349 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.69016
+2026-03-05 02:41:07;DEBUG;Epoch Summary|Epoch 349 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66796
+2026-03-05 02:41:07;INFO;Saved latest model in epoch : 349
+2026-03-05 02:41:07;INFO;Saved model milestone in epoch : 349
+2026-03-05 02:41:36;DEBUG;Epoch Summary|Epoch 350 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.84088
+2026-03-05 02:41:38;DEBUG;Epoch Summary|Epoch 350 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.83753
+2026-03-05 02:41:38;INFO;Saved latest model in epoch : 350
+2026-03-05 02:41:38;INFO;Saved best model in epoch : 350
+2026-03-05 02:42:10;DEBUG;Epoch Summary|Epoch 351 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.73808
+2026-03-05 02:42:13;DEBUG;Epoch Summary|Epoch 351 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.46939
+2026-03-05 02:42:13;INFO;Saved latest model in epoch : 351
+2026-03-05 02:42:43;DEBUG;Epoch Summary|Epoch 352 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.74851
+2026-03-05 02:42:46;DEBUG;Epoch Summary|Epoch 352 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.64334
+2026-03-05 02:42:46;INFO;Saved latest model in epoch : 352
+2026-03-05 02:43:16;DEBUG;Epoch Summary|Epoch 353 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.75150
+2026-03-05 02:43:18;DEBUG;Epoch Summary|Epoch 353 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.73903
+2026-03-05 02:43:18;INFO;Saved latest model in epoch : 353
+2026-03-05 02:43:48;DEBUG;Epoch Summary|Epoch 354 | train: (8000/8000)MSE: 0.00050|loss: 0.00050|PSNR: 33.60476
+2026-03-05 02:43:50;DEBUG;Epoch Summary|Epoch 354 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.56716
+2026-03-05 02:43:50;INFO;Saved latest model in epoch : 354
+2026-03-05 02:44:20;DEBUG;Epoch Summary|Epoch 355 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.72763
+2026-03-05 02:44:22;DEBUG;Epoch Summary|Epoch 355 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.50383
+2026-03-05 02:44:22;INFO;Saved latest model in epoch : 355
+2026-03-05 02:44:52;DEBUG;Epoch Summary|Epoch 356 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.79107
+2026-03-05 02:44:55;DEBUG;Epoch Summary|Epoch 356 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.72283
+2026-03-05 02:44:55;INFO;Saved latest model in epoch : 356
+2026-03-05 02:45:27;DEBUG;Epoch Summary|Epoch 357 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.78692
+2026-03-05 02:45:29;DEBUG;Epoch Summary|Epoch 357 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.44389
+2026-03-05 02:45:29;INFO;Saved latest model in epoch : 357
+2026-03-05 02:45:59;DEBUG;Epoch Summary|Epoch 358 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.64971
+2026-03-05 02:46:02;DEBUG;Epoch Summary|Epoch 358 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.65655
+2026-03-05 02:46:02;INFO;Saved latest model in epoch : 358
+2026-03-05 02:46:32;DEBUG;Epoch Summary|Epoch 359 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.71905
+2026-03-05 02:46:34;DEBUG;Epoch Summary|Epoch 359 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.56306
+2026-03-05 02:46:34;INFO;Saved latest model in epoch : 359
+2026-03-05 02:47:05;DEBUG;Epoch Summary|Epoch 360 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.71130
+2026-03-05 02:47:07;DEBUG;Epoch Summary|Epoch 360 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.80473
+2026-03-05 02:47:07;INFO;Saved latest model in epoch : 360
+2026-03-05 02:47:38;DEBUG;Epoch Summary|Epoch 361 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94019
+2026-03-05 02:47:41;DEBUG;Epoch Summary|Epoch 361 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.39388
+2026-03-05 02:47:41;INFO;Saved latest model in epoch : 361
+2026-03-05 02:48:10;DEBUG;Epoch Summary|Epoch 362 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.71387
+2026-03-05 02:48:13;DEBUG;Epoch Summary|Epoch 362 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.43289
+2026-03-05 02:48:13;INFO;Saved latest model in epoch : 362
+2026-03-05 02:48:43;DEBUG;Epoch Summary|Epoch 363 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.93705
+2026-03-05 02:48:45;DEBUG;Epoch Summary|Epoch 363 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.45153
+2026-03-05 02:48:45;INFO;Saved latest model in epoch : 363
+2026-03-05 02:49:16;DEBUG;Epoch Summary|Epoch 364 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.78749
+2026-03-05 02:49:19;DEBUG;Epoch Summary|Epoch 364 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.62504
+2026-03-05 02:49:19;INFO;Saved latest model in epoch : 364
+2026-03-05 02:49:49;DEBUG;Epoch Summary|Epoch 365 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.75616
+2026-03-05 02:49:51;DEBUG;Epoch Summary|Epoch 365 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.42124
+2026-03-05 02:49:51;INFO;Saved latest model in epoch : 365
+2026-03-05 02:50:22;DEBUG;Epoch Summary|Epoch 366 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.78901
+2026-03-05 02:50:25;DEBUG;Epoch Summary|Epoch 366 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.56697
+2026-03-05 02:50:25;INFO;Saved latest model in epoch : 366
+2026-03-05 02:50:55;DEBUG;Epoch Summary|Epoch 367 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.88914
+2026-03-05 02:50:57;DEBUG;Epoch Summary|Epoch 367 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.83899
+2026-03-05 02:50:57;INFO;Saved latest model in epoch : 367
+2026-03-05 02:51:27;DEBUG;Epoch Summary|Epoch 368 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.81202
+2026-03-05 02:51:29;DEBUG;Epoch Summary|Epoch 368 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.63666
+2026-03-05 02:51:29;INFO;Saved latest model in epoch : 368
+2026-03-05 02:51:59;DEBUG;Epoch Summary|Epoch 369 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.77077
+2026-03-05 02:52:02;DEBUG;Epoch Summary|Epoch 369 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.42515
+2026-03-05 02:52:02;INFO;Saved latest model in epoch : 369
+2026-03-05 02:52:32;DEBUG;Epoch Summary|Epoch 370 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.95217
+2026-03-05 02:52:34;DEBUG;Epoch Summary|Epoch 370 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.23673
+2026-03-05 02:52:34;INFO;Saved latest model in epoch : 370
+2026-03-05 02:53:04;DEBUG;Epoch Summary|Epoch 371 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.68961
+2026-03-05 02:53:06;DEBUG;Epoch Summary|Epoch 371 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.42053
+2026-03-05 02:53:06;INFO;Saved latest model in epoch : 371
+2026-03-05 02:53:37;DEBUG;Epoch Summary|Epoch 372 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.87864
+2026-03-05 02:53:40;DEBUG;Epoch Summary|Epoch 372 | valid: ( 479/ 480)MSE: 0.00118|loss: 0.00118|PSNR: 29.35960
+2026-03-05 02:53:40;INFO;Saved latest model in epoch : 372
+2026-03-05 02:54:11;DEBUG;Epoch Summary|Epoch 373 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.83527
+2026-03-05 02:54:14;DEBUG;Epoch Summary|Epoch 373 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.69646
+2026-03-05 02:54:14;INFO;Saved latest model in epoch : 373
+2026-03-05 02:54:45;DEBUG;Epoch Summary|Epoch 374 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.69730
+2026-03-05 02:54:47;DEBUG;Epoch Summary|Epoch 374 | valid: ( 479/ 480)MSE: 0.00130|loss: 0.00130|PSNR: 28.94710
+2026-03-05 02:54:47;INFO;Saved latest model in epoch : 374
+2026-03-05 02:55:18;DEBUG;Epoch Summary|Epoch 375 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.78355
+2026-03-05 02:55:21;DEBUG;Epoch Summary|Epoch 375 | valid: ( 479/ 480)MSE: 0.00119|loss: 0.00119|PSNR: 29.32055
+2026-03-05 02:55:21;INFO;Saved latest model in epoch : 375
+2026-03-05 02:55:51;DEBUG;Epoch Summary|Epoch 376 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.73362
+2026-03-05 02:55:54;DEBUG;Epoch Summary|Epoch 376 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.67077
+2026-03-05 02:55:54;INFO;Saved latest model in epoch : 376
+2026-03-05 02:56:23;DEBUG;Epoch Summary|Epoch 377 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.84949
+2026-03-05 02:56:25;DEBUG;Epoch Summary|Epoch 377 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.60962
+2026-03-05 02:56:25;INFO;Saved latest model in epoch : 377
+2026-03-05 02:56:59;DEBUG;Epoch Summary|Epoch 378 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.66950
+2026-03-05 02:57:01;DEBUG;Epoch Summary|Epoch 378 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.48113
+2026-03-05 02:57:01;INFO;Saved latest model in epoch : 378
+2026-03-05 02:57:30;DEBUG;Epoch Summary|Epoch 379 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.90531
+2026-03-05 02:57:33;DEBUG;Epoch Summary|Epoch 379 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.55786
+2026-03-05 02:57:33;INFO;Saved latest model in epoch : 379
+2026-03-05 02:58:04;DEBUG;Epoch Summary|Epoch 380 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.71059
+2026-03-05 02:58:06;DEBUG;Epoch Summary|Epoch 380 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.71852
+2026-03-05 02:58:06;INFO;Saved latest model in epoch : 380
+2026-03-05 02:58:36;DEBUG;Epoch Summary|Epoch 381 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.89068
+2026-03-05 02:58:39;DEBUG;Epoch Summary|Epoch 381 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.76472
+2026-03-05 02:58:39;INFO;Saved latest model in epoch : 381
+2026-03-05 02:59:09;DEBUG;Epoch Summary|Epoch 382 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.90572
+2026-03-05 02:59:12;DEBUG;Epoch Summary|Epoch 382 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.46297
+2026-03-05 02:59:12;INFO;Saved latest model in epoch : 382
+2026-03-05 02:59:42;DEBUG;Epoch Summary|Epoch 383 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.73675
+2026-03-05 02:59:45;DEBUG;Epoch Summary|Epoch 383 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.76237
+2026-03-05 02:59:45;INFO;Saved latest model in epoch : 383
+2026-03-05 03:00:16;DEBUG;Epoch Summary|Epoch 384 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.88459
+2026-03-05 03:00:19;DEBUG;Epoch Summary|Epoch 384 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.77357
+2026-03-05 03:00:19;INFO;Saved latest model in epoch : 384
+2026-03-05 03:00:49;DEBUG;Epoch Summary|Epoch 385 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.82478
+2026-03-05 03:00:51;DEBUG;Epoch Summary|Epoch 385 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.64224
+2026-03-05 03:00:51;INFO;Saved latest model in epoch : 385
+2026-03-05 03:01:21;DEBUG;Epoch Summary|Epoch 386 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.85733
+2026-03-05 03:01:24;DEBUG;Epoch Summary|Epoch 386 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.59008
+2026-03-05 03:01:24;INFO;Saved latest model in epoch : 386
+2026-03-05 03:01:53;DEBUG;Epoch Summary|Epoch 387 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.83943
+2026-03-05 03:01:55;DEBUG;Epoch Summary|Epoch 387 | valid: ( 479/ 480)MSE: 0.00124|loss: 0.00124|PSNR: 29.15679
+2026-03-05 03:01:55;INFO;Saved latest model in epoch : 387
+2026-03-05 03:02:26;DEBUG;Epoch Summary|Epoch 388 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.88998
+2026-03-05 03:02:29;DEBUG;Epoch Summary|Epoch 388 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.63923
+2026-03-05 03:02:29;INFO;Saved latest model in epoch : 388
+2026-03-05 03:02:59;DEBUG;Epoch Summary|Epoch 389 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.87122
+2026-03-05 03:03:01;DEBUG;Epoch Summary|Epoch 389 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.56631
+2026-03-05 03:03:01;INFO;Saved latest model in epoch : 389
+2026-03-05 03:03:31;DEBUG;Epoch Summary|Epoch 390 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.88067
+2026-03-05 03:03:34;DEBUG;Epoch Summary|Epoch 390 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.58342
+2026-03-05 03:03:34;INFO;Saved latest model in epoch : 390
+2026-03-05 03:04:04;DEBUG;Epoch Summary|Epoch 391 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.82078
+2026-03-05 03:04:06;DEBUG;Epoch Summary|Epoch 391 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.23133
+2026-03-05 03:04:06;INFO;Saved latest model in epoch : 391
+2026-03-05 03:04:39;DEBUG;Epoch Summary|Epoch 392 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94188
+2026-03-05 03:04:41;DEBUG;Epoch Summary|Epoch 392 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.60904
+2026-03-05 03:04:41;INFO;Saved latest model in epoch : 392
+2026-03-05 03:05:13;DEBUG;Epoch Summary|Epoch 393 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.91158
+2026-03-05 03:05:15;DEBUG;Epoch Summary|Epoch 393 | valid: ( 479/ 480)MSE: 0.00125|loss: 0.00125|PSNR: 29.12996
+2026-03-05 03:05:15;INFO;Saved latest model in epoch : 393
+2026-03-05 03:05:45;DEBUG;Epoch Summary|Epoch 394 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.75180
+2026-03-05 03:05:48;DEBUG;Epoch Summary|Epoch 394 | valid: ( 479/ 480)MSE: 0.00120|loss: 0.00120|PSNR: 29.30180
+2026-03-05 03:05:48;INFO;Saved latest model in epoch : 394
+2026-03-05 03:06:19;DEBUG;Epoch Summary|Epoch 395 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.75801
+2026-03-05 03:06:21;DEBUG;Epoch Summary|Epoch 395 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.80369
+2026-03-05 03:06:21;INFO;Saved latest model in epoch : 395
+2026-03-05 03:06:51;DEBUG;Epoch Summary|Epoch 396 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.98711
+2026-03-05 03:06:54;DEBUG;Epoch Summary|Epoch 396 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.51788
+2026-03-05 03:06:54;INFO;Saved latest model in epoch : 396
+2026-03-05 03:07:24;DEBUG;Epoch Summary|Epoch 397 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.92947
+2026-03-05 03:07:26;DEBUG;Epoch Summary|Epoch 397 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.47384
+2026-03-05 03:07:26;INFO;Saved latest model in epoch : 397
+2026-03-05 03:07:58;DEBUG;Epoch Summary|Epoch 398 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.80644
+2026-03-05 03:08:00;DEBUG;Epoch Summary|Epoch 398 | valid: ( 479/ 480)MSE: 0.00105|loss: 0.00105|PSNR: 29.86995
+2026-03-05 03:08:00;INFO;Saved latest model in epoch : 398
+2026-03-05 03:08:00;INFO;Saved best model in epoch : 398
+2026-03-05 03:08:30;DEBUG;Epoch Summary|Epoch 399 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.92391
+2026-03-05 03:08:32;DEBUG;Epoch Summary|Epoch 399 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.61539
+2026-03-05 03:08:32;INFO;Saved latest model in epoch : 399
+2026-03-05 03:08:32;INFO;Saved model milestone in epoch : 399
+2026-03-05 03:09:02;DEBUG;Epoch Summary|Epoch 400 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.81064
+2026-03-05 03:09:05;DEBUG;Epoch Summary|Epoch 400 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.67722
+2026-03-05 03:09:05;INFO;Saved latest model in epoch : 400
+2026-03-05 03:09:38;DEBUG;Epoch Summary|Epoch 401 | train: (8000/8000)MSE: 0.00053|loss: 0.00053|PSNR: 33.42737
+2026-03-05 03:09:41;DEBUG;Epoch Summary|Epoch 401 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66134
+2026-03-05 03:09:41;INFO;Saved latest model in epoch : 401
+2026-03-05 03:10:10;DEBUG;Epoch Summary|Epoch 402 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.83003
+2026-03-05 03:10:13;DEBUG;Epoch Summary|Epoch 402 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.57655
+2026-03-05 03:10:13;INFO;Saved latest model in epoch : 402
+2026-03-05 03:10:43;DEBUG;Epoch Summary|Epoch 403 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94634
+2026-03-05 03:10:46;DEBUG;Epoch Summary|Epoch 403 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.51055
+2026-03-05 03:10:46;INFO;Saved latest model in epoch : 403
+2026-03-05 03:11:17;DEBUG;Epoch Summary|Epoch 404 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.84740
+2026-03-05 03:11:19;DEBUG;Epoch Summary|Epoch 404 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.49223
+2026-03-05 03:11:19;INFO;Saved latest model in epoch : 404
+2026-03-05 03:11:49;DEBUG;Epoch Summary|Epoch 405 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.95806
+2026-03-05 03:11:52;DEBUG;Epoch Summary|Epoch 405 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.51172
+2026-03-05 03:11:52;INFO;Saved latest model in epoch : 405
+2026-03-05 03:12:23;DEBUG;Epoch Summary|Epoch 406 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.72403
+2026-03-05 03:12:26;DEBUG;Epoch Summary|Epoch 406 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.71270
+2026-03-05 03:12:26;INFO;Saved latest model in epoch : 406
+2026-03-05 03:12:57;DEBUG;Epoch Summary|Epoch 407 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.01076
+2026-03-05 03:12:59;DEBUG;Epoch Summary|Epoch 407 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.68070
+2026-03-05 03:12:59;INFO;Saved latest model in epoch : 407
+2026-03-05 03:13:30;DEBUG;Epoch Summary|Epoch 408 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.95701
+2026-03-05 03:13:33;DEBUG;Epoch Summary|Epoch 408 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.22495
+2026-03-05 03:13:33;INFO;Saved latest model in epoch : 408
+2026-03-05 03:14:04;DEBUG;Epoch Summary|Epoch 409 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.69877
+2026-03-05 03:14:06;DEBUG;Epoch Summary|Epoch 409 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66230
+2026-03-05 03:14:07;INFO;Saved latest model in epoch : 409
+2026-03-05 03:14:37;DEBUG;Epoch Summary|Epoch 410 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.83694
+2026-03-05 03:14:39;DEBUG;Epoch Summary|Epoch 410 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.52195
+2026-03-05 03:14:39;INFO;Saved latest model in epoch : 410
+2026-03-05 03:15:09;DEBUG;Epoch Summary|Epoch 411 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.97083
+2026-03-05 03:15:12;DEBUG;Epoch Summary|Epoch 411 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.83898
+2026-03-05 03:15:12;INFO;Saved latest model in epoch : 411
+2026-03-05 03:15:43;DEBUG;Epoch Summary|Epoch 412 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.68418
+2026-03-05 03:15:45;DEBUG;Epoch Summary|Epoch 412 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.77941
+2026-03-05 03:15:45;INFO;Saved latest model in epoch : 412
+2026-03-05 03:16:15;DEBUG;Epoch Summary|Epoch 413 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.02979
+2026-03-05 03:16:18;DEBUG;Epoch Summary|Epoch 413 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.55789
+2026-03-05 03:16:18;INFO;Saved latest model in epoch : 413
+2026-03-05 03:16:47;DEBUG;Epoch Summary|Epoch 414 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.86712
+2026-03-05 03:16:50;DEBUG;Epoch Summary|Epoch 414 | valid: ( 479/ 480)MSE: 0.00101|loss: 0.00101|PSNR: 30.02981
+2026-03-05 03:16:50;INFO;Saved latest model in epoch : 414
+2026-03-05 03:16:50;INFO;Saved best model in epoch : 414
+2026-03-05 03:17:20;DEBUG;Epoch Summary|Epoch 415 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.84065
+2026-03-05 03:17:23;DEBUG;Epoch Summary|Epoch 415 | valid: ( 479/ 480)MSE: 0.00122|loss: 0.00122|PSNR: 29.21912
+2026-03-05 03:17:23;INFO;Saved latest model in epoch : 415
+2026-03-05 03:17:53;DEBUG;Epoch Summary|Epoch 416 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.81338
+2026-03-05 03:17:55;DEBUG;Epoch Summary|Epoch 416 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.52206
+2026-03-05 03:17:55;INFO;Saved latest model in epoch : 416
+2026-03-05 03:18:25;DEBUG;Epoch Summary|Epoch 417 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.91266
+2026-03-05 03:18:28;DEBUG;Epoch Summary|Epoch 417 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66116
+2026-03-05 03:18:28;INFO;Saved latest model in epoch : 417
+2026-03-05 03:18:57;DEBUG;Epoch Summary|Epoch 418 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94768
+2026-03-05 03:18:59;DEBUG;Epoch Summary|Epoch 418 | valid: ( 479/ 480)MSE: 0.00104|loss: 0.00104|PSNR: 29.90029
+2026-03-05 03:18:59;INFO;Saved latest model in epoch : 418
+2026-03-05 03:19:31;DEBUG;Epoch Summary|Epoch 419 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.98027
+2026-03-05 03:19:33;DEBUG;Epoch Summary|Epoch 419 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.81102
+2026-03-05 03:19:33;INFO;Saved latest model in epoch : 419
+2026-03-05 03:20:04;DEBUG;Epoch Summary|Epoch 420 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.85717
+2026-03-05 03:20:06;DEBUG;Epoch Summary|Epoch 420 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.60667
+2026-03-05 03:20:06;INFO;Saved latest model in epoch : 420
+2026-03-05 03:20:37;DEBUG;Epoch Summary|Epoch 421 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.02877
+2026-03-05 03:20:39;DEBUG;Epoch Summary|Epoch 421 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.52947
+2026-03-05 03:20:39;INFO;Saved latest model in epoch : 421
+2026-03-05 03:21:09;DEBUG;Epoch Summary|Epoch 422 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.90280
+2026-03-05 03:21:11;DEBUG;Epoch Summary|Epoch 422 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.72455
+2026-03-05 03:21:11;INFO;Saved latest model in epoch : 422
+2026-03-05 03:21:42;DEBUG;Epoch Summary|Epoch 423 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.87718
+2026-03-05 03:21:44;DEBUG;Epoch Summary|Epoch 423 | valid: ( 479/ 480)MSE: 0.00104|loss: 0.00104|PSNR: 29.88433
+2026-03-05 03:21:44;INFO;Saved latest model in epoch : 423
+2026-03-05 03:22:14;DEBUG;Epoch Summary|Epoch 424 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.87462
+2026-03-05 03:22:17;DEBUG;Epoch Summary|Epoch 424 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.51230
+2026-03-05 03:22:17;INFO;Saved latest model in epoch : 424
+2026-03-05 03:22:46;DEBUG;Epoch Summary|Epoch 425 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.80682
+2026-03-05 03:22:48;DEBUG;Epoch Summary|Epoch 425 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.75757
+2026-03-05 03:22:48;INFO;Saved latest model in epoch : 425
+2026-03-05 03:23:19;DEBUG;Epoch Summary|Epoch 426 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94336
+2026-03-05 03:23:22;DEBUG;Epoch Summary|Epoch 426 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.60511
+2026-03-05 03:23:22;INFO;Saved latest model in epoch : 426
+2026-03-05 03:23:52;DEBUG;Epoch Summary|Epoch 427 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.90787
+2026-03-05 03:23:54;DEBUG;Epoch Summary|Epoch 427 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.69435
+2026-03-05 03:23:54;INFO;Saved latest model in epoch : 427
+2026-03-05 03:24:25;DEBUG;Epoch Summary|Epoch 428 | train: (8000/8000)MSE: 0.00049|loss: 0.00049|PSNR: 33.73690
+2026-03-05 03:24:27;DEBUG;Epoch Summary|Epoch 428 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.71080
+2026-03-05 03:24:27;INFO;Saved latest model in epoch : 428
+2026-03-05 03:24:57;DEBUG;Epoch Summary|Epoch 429 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.91481
+2026-03-05 03:25:00;DEBUG;Epoch Summary|Epoch 429 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.51993
+2026-03-05 03:25:00;INFO;Saved latest model in epoch : 429
+2026-03-05 03:25:29;DEBUG;Epoch Summary|Epoch 430 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.95186
+2026-03-05 03:25:32;DEBUG;Epoch Summary|Epoch 430 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.65256
+2026-03-05 03:25:32;INFO;Saved latest model in epoch : 430
+2026-03-05 03:26:01;DEBUG;Epoch Summary|Epoch 431 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94733
+2026-03-05 03:26:04;DEBUG;Epoch Summary|Epoch 431 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.72285
+2026-03-05 03:26:04;INFO;Saved latest model in epoch : 431
+2026-03-05 03:26:35;DEBUG;Epoch Summary|Epoch 432 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.91025
+2026-03-05 03:26:37;DEBUG;Epoch Summary|Epoch 432 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.55391
+2026-03-05 03:26:37;INFO;Saved latest model in epoch : 432
+2026-03-05 03:27:09;DEBUG;Epoch Summary|Epoch 433 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.91714
+2026-03-05 03:27:12;DEBUG;Epoch Summary|Epoch 433 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.77293
+2026-03-05 03:27:12;INFO;Saved latest model in epoch : 433
+2026-03-05 03:27:43;DEBUG;Epoch Summary|Epoch 434 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.89811
+2026-03-05 03:27:46;DEBUG;Epoch Summary|Epoch 434 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.62741
+2026-03-05 03:27:46;INFO;Saved latest model in epoch : 434
+2026-03-05 03:28:16;DEBUG;Epoch Summary|Epoch 435 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.99914
+2026-03-05 03:28:18;DEBUG;Epoch Summary|Epoch 435 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.75297
+2026-03-05 03:28:18;INFO;Saved latest model in epoch : 435
+2026-03-05 03:28:48;DEBUG;Epoch Summary|Epoch 436 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.06950
+2026-03-05 03:28:50;DEBUG;Epoch Summary|Epoch 436 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.70515
+2026-03-05 03:28:50;INFO;Saved latest model in epoch : 436
+2026-03-05 03:29:22;DEBUG;Epoch Summary|Epoch 437 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.85811
+2026-03-05 03:29:25;DEBUG;Epoch Summary|Epoch 437 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.76900
+2026-03-05 03:29:25;INFO;Saved latest model in epoch : 437
+2026-03-05 03:29:55;DEBUG;Epoch Summary|Epoch 438 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.03740
+2026-03-05 03:29:57;DEBUG;Epoch Summary|Epoch 438 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.63826
+2026-03-05 03:29:57;INFO;Saved latest model in epoch : 438
+2026-03-05 03:30:27;DEBUG;Epoch Summary|Epoch 439 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.87196
+2026-03-05 03:30:29;DEBUG;Epoch Summary|Epoch 439 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.64792
+2026-03-05 03:30:29;INFO;Saved latest model in epoch : 439
+2026-03-05 03:31:00;DEBUG;Epoch Summary|Epoch 440 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.00390
+2026-03-05 03:31:02;DEBUG;Epoch Summary|Epoch 440 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.58335
+2026-03-05 03:31:02;INFO;Saved latest model in epoch : 440
+2026-03-05 03:31:32;DEBUG;Epoch Summary|Epoch 441 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.99863
+2026-03-05 03:31:35;DEBUG;Epoch Summary|Epoch 441 | valid: ( 479/ 480)MSE: 0.00125|loss: 0.00125|PSNR: 29.13257
+2026-03-05 03:31:35;INFO;Saved latest model in epoch : 441
+2026-03-05 03:32:04;DEBUG;Epoch Summary|Epoch 442 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.87794
+2026-03-05 03:32:06;DEBUG;Epoch Summary|Epoch 442 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.45960
+2026-03-05 03:32:06;INFO;Saved latest model in epoch : 442
+2026-03-05 03:32:37;DEBUG;Epoch Summary|Epoch 443 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.89772
+2026-03-05 03:32:40;DEBUG;Epoch Summary|Epoch 443 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.65362
+2026-03-05 03:32:40;INFO;Saved latest model in epoch : 443
+2026-03-05 03:33:10;DEBUG;Epoch Summary|Epoch 444 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.96585
+2026-03-05 03:33:13;DEBUG;Epoch Summary|Epoch 444 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.50862
+2026-03-05 03:33:13;INFO;Saved latest model in epoch : 444
+2026-03-05 03:33:44;DEBUG;Epoch Summary|Epoch 445 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.90390
+2026-03-05 03:33:47;DEBUG;Epoch Summary|Epoch 445 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.72736
+2026-03-05 03:33:47;INFO;Saved latest model in epoch : 445
+2026-03-05 03:34:18;DEBUG;Epoch Summary|Epoch 446 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.99878
+2026-03-05 03:34:20;DEBUG;Epoch Summary|Epoch 446 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.82615
+2026-03-05 03:34:20;INFO;Saved latest model in epoch : 446
+2026-03-05 03:34:50;DEBUG;Epoch Summary|Epoch 447 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.75905
+2026-03-05 03:34:52;DEBUG;Epoch Summary|Epoch 447 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.78576
+2026-03-05 03:34:52;INFO;Saved latest model in epoch : 447
+2026-03-05 03:35:23;DEBUG;Epoch Summary|Epoch 448 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.03339
+2026-03-05 03:35:26;DEBUG;Epoch Summary|Epoch 448 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.53145
+2026-03-05 03:35:26;INFO;Saved latest model in epoch : 448
+2026-03-05 03:35:55;DEBUG;Epoch Summary|Epoch 449 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.80374
+2026-03-05 03:35:58;DEBUG;Epoch Summary|Epoch 449 | valid: ( 479/ 480)MSE: 0.00105|loss: 0.00105|PSNR: 29.84478
+2026-03-05 03:35:58;INFO;Saved latest model in epoch : 449
+2026-03-05 03:35:58;INFO;Saved model milestone in epoch : 449
+2026-03-05 03:36:30;DEBUG;Epoch Summary|Epoch 450 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.98063
+2026-03-05 03:36:33;DEBUG;Epoch Summary|Epoch 450 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.84152
+2026-03-05 03:36:33;INFO;Saved latest model in epoch : 450
+2026-03-05 03:37:03;DEBUG;Epoch Summary|Epoch 451 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.84257
+2026-03-05 03:37:06;DEBUG;Epoch Summary|Epoch 451 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.78129
+2026-03-05 03:37:06;INFO;Saved latest model in epoch : 451
+2026-03-05 03:37:36;DEBUG;Epoch Summary|Epoch 452 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.99382
+2026-03-05 03:37:39;DEBUG;Epoch Summary|Epoch 452 | valid: ( 479/ 480)MSE: 0.00104|loss: 0.00104|PSNR: 29.89358
+2026-03-05 03:37:39;INFO;Saved latest model in epoch : 452
+2026-03-05 03:38:08;DEBUG;Epoch Summary|Epoch 453 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.93989
+2026-03-05 03:38:11;DEBUG;Epoch Summary|Epoch 453 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.51835
+2026-03-05 03:38:11;INFO;Saved latest model in epoch : 453
+2026-03-05 03:38:43;DEBUG;Epoch Summary|Epoch 454 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.98437
+2026-03-05 03:38:45;DEBUG;Epoch Summary|Epoch 454 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.80151
+2026-03-05 03:38:45;INFO;Saved latest model in epoch : 454
+2026-03-05 03:39:17;DEBUG;Epoch Summary|Epoch 455 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.05391
+2026-03-05 03:39:19;DEBUG;Epoch Summary|Epoch 455 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.58953
+2026-03-05 03:39:19;INFO;Saved latest model in epoch : 455
+2026-03-05 03:39:51;DEBUG;Epoch Summary|Epoch 456 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.91434
+2026-03-05 03:39:54;DEBUG;Epoch Summary|Epoch 456 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.62975
+2026-03-05 03:39:54;INFO;Saved latest model in epoch : 456
+2026-03-05 03:40:24;DEBUG;Epoch Summary|Epoch 457 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.86029
+2026-03-05 03:40:27;DEBUG;Epoch Summary|Epoch 457 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.82160
+2026-03-05 03:40:27;INFO;Saved latest model in epoch : 457
+2026-03-05 03:40:58;DEBUG;Epoch Summary|Epoch 458 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.87031
+2026-03-05 03:41:00;DEBUG;Epoch Summary|Epoch 458 | valid: ( 479/ 480)MSE: 0.00107|loss: 0.00107|PSNR: 29.77815
+2026-03-05 03:41:00;INFO;Saved latest model in epoch : 458
+2026-03-05 03:41:32;DEBUG;Epoch Summary|Epoch 459 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.99470
+2026-03-05 03:41:35;DEBUG;Epoch Summary|Epoch 459 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.70012
+2026-03-05 03:41:35;INFO;Saved latest model in epoch : 459
+2026-03-05 03:42:06;DEBUG;Epoch Summary|Epoch 460 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.01672
+2026-03-05 03:42:08;DEBUG;Epoch Summary|Epoch 460 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.61455
+2026-03-05 03:42:08;INFO;Saved latest model in epoch : 460
+2026-03-05 03:42:39;DEBUG;Epoch Summary|Epoch 461 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.98201
+2026-03-05 03:42:42;DEBUG;Epoch Summary|Epoch 461 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.64202
+2026-03-05 03:42:42;INFO;Saved latest model in epoch : 461
+2026-03-05 03:43:12;DEBUG;Epoch Summary|Epoch 462 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.03533
+2026-03-05 03:43:14;DEBUG;Epoch Summary|Epoch 462 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.62498
+2026-03-05 03:43:14;INFO;Saved latest model in epoch : 462
+2026-03-05 03:43:46;DEBUG;Epoch Summary|Epoch 463 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.93857
+2026-03-05 03:43:49;DEBUG;Epoch Summary|Epoch 463 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.70954
+2026-03-05 03:43:49;INFO;Saved latest model in epoch : 463
+2026-03-05 03:44:21;DEBUG;Epoch Summary|Epoch 464 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.03546
+2026-03-05 03:44:23;DEBUG;Epoch Summary|Epoch 464 | valid: ( 479/ 480)MSE: 0.00121|loss: 0.00121|PSNR: 29.25422
+2026-03-05 03:44:23;INFO;Saved latest model in epoch : 464
+2026-03-05 03:44:54;DEBUG;Epoch Summary|Epoch 465 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.89205
+2026-03-05 03:44:57;DEBUG;Epoch Summary|Epoch 465 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.64890
+2026-03-05 03:44:57;INFO;Saved latest model in epoch : 465
+2026-03-05 03:45:28;DEBUG;Epoch Summary|Epoch 466 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.92001
+2026-03-05 03:45:31;DEBUG;Epoch Summary|Epoch 466 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.49932
+2026-03-05 03:45:31;INFO;Saved latest model in epoch : 466
+2026-03-05 03:46:01;DEBUG;Epoch Summary|Epoch 467 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94006
+2026-03-05 03:46:04;DEBUG;Epoch Summary|Epoch 467 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.56517
+2026-03-05 03:46:04;INFO;Saved latest model in epoch : 467
+2026-03-05 03:46:36;DEBUG;Epoch Summary|Epoch 468 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.97054
+2026-03-05 03:46:38;DEBUG;Epoch Summary|Epoch 468 | valid: ( 479/ 480)MSE: 0.00104|loss: 0.00104|PSNR: 29.89049
+2026-03-05 03:46:39;INFO;Saved latest model in epoch : 468
+2026-03-05 03:47:10;DEBUG;Epoch Summary|Epoch 469 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.94997
+2026-03-05 03:47:13;DEBUG;Epoch Summary|Epoch 469 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.56074
+2026-03-05 03:47:13;INFO;Saved latest model in epoch : 469
+2026-03-05 03:47:43;DEBUG;Epoch Summary|Epoch 470 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 34.00532
+2026-03-05 03:47:46;DEBUG;Epoch Summary|Epoch 470 | valid: ( 479/ 480)MSE: 0.00126|loss: 0.00126|PSNR: 29.14869
+2026-03-05 03:47:46;INFO;Saved latest model in epoch : 470
+2026-03-05 03:48:17;DEBUG;Epoch Summary|Epoch 471 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.90173
+2026-03-05 03:48:20;DEBUG;Epoch Summary|Epoch 471 | valid: ( 479/ 480)MSE: 0.00131|loss: 0.00131|PSNR: 28.89661
+2026-03-05 03:48:20;INFO;Saved latest model in epoch : 471
+2026-03-05 03:48:49;DEBUG;Epoch Summary|Epoch 472 | train: (8000/8000)MSE: 0.00044|loss: 0.00044|PSNR: 34.10372
+2026-03-05 03:48:52;DEBUG;Epoch Summary|Epoch 472 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66119
+2026-03-05 03:48:52;INFO;Saved latest model in epoch : 472
+2026-03-05 03:49:22;DEBUG;Epoch Summary|Epoch 473 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.98960
+2026-03-05 03:49:25;DEBUG;Epoch Summary|Epoch 473 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.51801
+2026-03-05 03:49:25;INFO;Saved latest model in epoch : 473
+2026-03-05 03:49:54;DEBUG;Epoch Summary|Epoch 474 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.00918
+2026-03-05 03:49:57;DEBUG;Epoch Summary|Epoch 474 | valid: ( 479/ 480)MSE: 0.00136|loss: 0.00136|PSNR: 28.73324
+2026-03-05 03:49:57;INFO;Saved latest model in epoch : 474
+2026-03-05 03:50:26;DEBUG;Epoch Summary|Epoch 475 | train: (8000/8000)MSE: 0.00048|loss: 0.00048|PSNR: 33.76517
+2026-03-05 03:50:29;DEBUG;Epoch Summary|Epoch 475 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.64686
+2026-03-05 03:50:29;INFO;Saved latest model in epoch : 475
+2026-03-05 03:50:58;DEBUG;Epoch Summary|Epoch 476 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.95181
+2026-03-05 03:51:01;DEBUG;Epoch Summary|Epoch 476 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.80645
+2026-03-05 03:51:01;INFO;Saved latest model in epoch : 476
+2026-03-05 03:51:31;DEBUG;Epoch Summary|Epoch 477 | train: (8000/8000)MSE: 0.00043|loss: 0.00043|PSNR: 34.23834
+2026-03-05 03:51:33;DEBUG;Epoch Summary|Epoch 477 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.59969
+2026-03-05 03:51:33;INFO;Saved latest model in epoch : 477
+2026-03-05 03:52:03;DEBUG;Epoch Summary|Epoch 478 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.86930
+2026-03-05 03:52:05;DEBUG;Epoch Summary|Epoch 478 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.69057
+2026-03-05 03:52:05;INFO;Saved latest model in epoch : 478
+2026-03-05 03:52:35;DEBUG;Epoch Summary|Epoch 479 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.09623
+2026-03-05 03:52:38;DEBUG;Epoch Summary|Epoch 479 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.82918
+2026-03-05 03:52:38;INFO;Saved latest model in epoch : 479
+2026-03-05 03:53:08;DEBUG;Epoch Summary|Epoch 480 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.96456
+2026-03-05 03:53:11;DEBUG;Epoch Summary|Epoch 480 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.52237
+2026-03-05 03:53:11;INFO;Saved latest model in epoch : 480
+2026-03-05 03:53:41;DEBUG;Epoch Summary|Epoch 481 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.89881
+2026-03-05 03:53:43;DEBUG;Epoch Summary|Epoch 481 | valid: ( 479/ 480)MSE: 0.00111|loss: 0.00111|PSNR: 29.64651
+2026-03-05 03:53:43;INFO;Saved latest model in epoch : 481
+2026-03-05 03:54:13;DEBUG;Epoch Summary|Epoch 482 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.03545
+2026-03-05 03:54:15;DEBUG;Epoch Summary|Epoch 482 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66677
+2026-03-05 03:54:15;INFO;Saved latest model in epoch : 482
+2026-03-05 03:54:46;DEBUG;Epoch Summary|Epoch 483 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.03258
+2026-03-05 03:54:49;DEBUG;Epoch Summary|Epoch 483 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66706
+2026-03-05 03:54:49;INFO;Saved latest model in epoch : 483
+2026-03-05 03:55:21;DEBUG;Epoch Summary|Epoch 484 | train: (8000/8000)MSE: 0.00047|loss: 0.00047|PSNR: 33.87790
+2026-03-05 03:55:23;DEBUG;Epoch Summary|Epoch 484 | valid: ( 479/ 480)MSE: 0.00105|loss: 0.00105|PSNR: 29.82542
+2026-03-05 03:55:23;INFO;Saved latest model in epoch : 484
+2026-03-05 03:55:55;DEBUG;Epoch Summary|Epoch 485 | train: (8000/8000)MSE: 0.00044|loss: 0.00044|PSNR: 34.10063
+2026-03-05 03:55:58;DEBUG;Epoch Summary|Epoch 485 | valid: ( 479/ 480)MSE: 0.00114|loss: 0.00114|PSNR: 29.48912
+2026-03-05 03:55:58;INFO;Saved latest model in epoch : 485
+2026-03-05 03:56:28;DEBUG;Epoch Summary|Epoch 486 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 33.99319
+2026-03-05 03:56:31;DEBUG;Epoch Summary|Epoch 486 | valid: ( 479/ 480)MSE: 0.00113|loss: 0.00113|PSNR: 29.52312
+2026-03-05 03:56:31;INFO;Saved latest model in epoch : 486
+2026-03-05 03:57:01;DEBUG;Epoch Summary|Epoch 487 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.06483
+2026-03-05 03:57:03;DEBUG;Epoch Summary|Epoch 487 | valid: ( 479/ 480)MSE: 0.00116|loss: 0.00116|PSNR: 29.47619
+2026-03-05 03:57:03;INFO;Saved latest model in epoch : 487
+2026-03-05 03:57:34;DEBUG;Epoch Summary|Epoch 488 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.04027
+2026-03-05 03:57:37;DEBUG;Epoch Summary|Epoch 488 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.70703
+2026-03-05 03:57:37;INFO;Saved latest model in epoch : 488
+2026-03-05 03:58:08;DEBUG;Epoch Summary|Epoch 489 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.95780
+2026-03-05 03:58:10;DEBUG;Epoch Summary|Epoch 489 | valid: ( 479/ 480)MSE: 0.00104|loss: 0.00104|PSNR: 29.93473
+2026-03-05 03:58:10;INFO;Saved latest model in epoch : 489
+2026-03-05 03:58:41;DEBUG;Epoch Summary|Epoch 490 | train: (8000/8000)MSE: 0.00043|loss: 0.00043|PSNR: 34.16451
+2026-03-05 03:58:43;DEBUG;Epoch Summary|Epoch 490 | valid: ( 479/ 480)MSE: 0.00109|loss: 0.00109|PSNR: 29.70117
+2026-03-05 03:58:43;INFO;Saved latest model in epoch : 490
+2026-03-05 03:59:14;DEBUG;Epoch Summary|Epoch 491 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.92831
+2026-03-05 03:59:17;DEBUG;Epoch Summary|Epoch 491 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.71511
+2026-03-05 03:59:17;INFO;Saved latest model in epoch : 491
+2026-03-05 03:59:49;DEBUG;Epoch Summary|Epoch 492 | train: (8000/8000)MSE: 0.00044|loss: 0.00044|PSNR: 34.08354
+2026-03-05 03:59:51;DEBUG;Epoch Summary|Epoch 492 | valid: ( 479/ 480)MSE: 0.00106|loss: 0.00106|PSNR: 29.80184
+2026-03-05 03:59:51;INFO;Saved latest model in epoch : 492
+2026-03-05 04:00:21;DEBUG;Epoch Summary|Epoch 493 | train: (8000/8000)MSE: 0.00044|loss: 0.00044|PSNR: 34.10892
+2026-03-05 04:00:24;DEBUG;Epoch Summary|Epoch 493 | valid: ( 479/ 480)MSE: 0.00105|loss: 0.00105|PSNR: 29.84866
+2026-03-05 04:00:24;INFO;Saved latest model in epoch : 493
+2026-03-05 04:00:55;DEBUG;Epoch Summary|Epoch 494 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.00632
+2026-03-05 04:00:58;DEBUG;Epoch Summary|Epoch 494 | valid: ( 479/ 480)MSE: 0.00108|loss: 0.00108|PSNR: 29.74464
+2026-03-05 04:00:58;INFO;Saved latest model in epoch : 494
+2026-03-05 04:01:28;DEBUG;Epoch Summary|Epoch 495 | train: (8000/8000)MSE: 0.00044|loss: 0.00044|PSNR: 34.14843
+2026-03-05 04:01:31;DEBUG;Epoch Summary|Epoch 495 | valid: ( 479/ 480)MSE: 0.00117|loss: 0.00117|PSNR: 29.42735
+2026-03-05 04:01:31;INFO;Saved latest model in epoch : 495
+2026-03-05 04:02:01;DEBUG;Epoch Summary|Epoch 496 | train: (8000/8000)MSE: 0.00046|loss: 0.00046|PSNR: 33.93142
+2026-03-05 04:02:03;DEBUG;Epoch Summary|Epoch 496 | valid: ( 479/ 480)MSE: 0.00110|loss: 0.00110|PSNR: 29.66572
+2026-03-05 04:02:04;INFO;Saved latest model in epoch : 496
+2026-03-05 04:02:32;DEBUG;Epoch Summary|Epoch 497 | train: (8000/8000)MSE: 0.00044|loss: 0.00044|PSNR: 34.13892
+2026-03-05 04:02:35;DEBUG;Epoch Summary|Epoch 497 | valid: ( 479/ 480)MSE: 0.00105|loss: 0.00105|PSNR: 29.87109
+2026-03-05 04:02:35;INFO;Saved latest model in epoch : 497
+2026-03-05 04:03:06;DEBUG;Epoch Summary|Epoch 498 | train: (8000/8000)MSE: 0.00044|loss: 0.00044|PSNR: 34.11981
+2026-03-05 04:03:08;DEBUG;Epoch Summary|Epoch 498 | valid: ( 479/ 480)MSE: 0.00112|loss: 0.00112|PSNR: 29.57982
+2026-03-05 04:03:08;INFO;Saved latest model in epoch : 498
+2026-03-05 04:03:38;DEBUG;Epoch Summary|Epoch 499 | train: (8000/8000)MSE: 0.00045|loss: 0.00045|PSNR: 34.05057
+2026-03-05 04:03:40;DEBUG;Epoch Summary|Epoch 499 | valid: ( 479/ 480)MSE: 0.00115|loss: 0.00115|PSNR: 29.54365
+2026-03-05 04:03:40;INFO;Saved latest model in epoch : 499
+2026-03-05 04:03:40;INFO;Saved model milestone in epoch : 499
+2026-03-05 14:49:05;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:50:14;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:51:05;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:52:06;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:52:31;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:53:35;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:56:03;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:56:52;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))
+2026-03-05 14:57:36;INFO;Namespace(config_file=[Path_fr(configs/default.yaml, cwd=/workspace/cdh_cowork2/MEHF_JSCC)], use_cpu=False, _gpu_assigned=False, experiment_name='multi2', seed=1030, loss_type='MSE', epochs=500, clip_max_norm=1.0, optimizer=Namespace(type='Adam', learning_rate=0.0001, lr_milestone_epoch=(), lr_gamma=0.1), dataset=Namespace(train_dataset='ImageNet_8000', valid_dataset='Kodak_rep', train_batch_size=8, valid_batch_size=16, num_workers=16), logging=Namespace(save_dir='logs/methodcomp', save_model=True, save_every=50, pretrain_ckpt=None, save_path='logs/methodcomp/multi2'), model=Namespace(type='ResNet_multi2', SNRdB=10.0, spp=0.5, dim=96, img_shape=(256, 256), depth=4))

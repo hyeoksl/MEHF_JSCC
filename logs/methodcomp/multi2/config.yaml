@@ -1,0 +1,45 @@
+!!python/object:jsonargparse._namespace.Namespace
+_gpu_assigned: false
+clip_max_norm: 1.0
+config_file:
+- !!python/object:jsonargparse._util.Path
+  _absolute: /workspace/cdh_cowork2/MEHF_JSCC/configs/default.yaml
+  _cwd: /workspace/cdh_cowork2/MEHF_JSCC
+  _is_fsspec: false
+  _is_url: false
+  _mode: fr
+  _relative: configs/default.yaml
+  _skip_check: false
+  _std_io: false
+  _url_data: null
+dataset: !!python/object:jsonargparse._namespace.Namespace
+  num_workers: 16
+  train_batch_size: 8
+  train_dataset: ImageNet_8000
+  valid_batch_size: 16
+  valid_dataset: Kodak_rep
+epochs: 500
+experiment_name: multi2
+logging: !!python/object:jsonargparse._namespace.Namespace
+  pretrain_ckpt: null
+  save_dir: logs/methodcomp
+  save_every: 50
+  save_model: true
+  save_path: logs/methodcomp/multi2
+loss_type: MSE
+model: !!python/object:jsonargparse._namespace.Namespace
+  SNRdB: 10.0
+  depth: 4
+  dim: 96
+  img_shape: !!python/tuple
+  - 256
+  - 256
+  spp: 0.5
+  type: ResNet_multi2
+optimizer: !!python/object:jsonargparse._namespace.Namespace
+  learning_rate: 0.0001
+  lr_gamma: 0.1
+  lr_milestone_epoch: !!python/tuple []
+  type: Adam
+seed: 1030
+use_cpu: false

@@ -11,21 +11,26 @@ from torchinfo import summary
 
 import model as jscc_models
 from utils import load_dataloaders, getUsableGPUs,\
-    progressMeter, logger_configuration, load_ckpt, save_ckpt, custom_arg_parsing, QuadResJSCCLoss
+    progressMeter, logger_configuration, load_ckpt, save_ckpt, custom_arg_parsing, CustomJSCCLoss
 from setproctitle import setproctitle
 
 def train_epoch(epoch, dataloader, model, criterion, clip_max_norm, optimizer, writer, logger):
     model.train()    
     total_images = len(dataloader.dataset)
     progress = progressMeter('train', writer, logger, total_images, epoch, use_pbar=True)
-    
+    weight=torch.tensor([i**2 for i in range(model.min_F, model.F+1)], dtype=torch.float32).cuda()
+    weight=weight/weight.mean(0)
     for data in dataloader:
         data = data.cuda()
+
+        B=data.shape[0]
+        snrs=torch.randint(-2, 25, (B,1), device=data.device, dtype=torch.float32)
+        chunks=random.randint(model.min_F, model.F)
         
         optimizer.zero_grad()
-        out_net = model(data)
+        out_net = model(data, snrs, chunks)
         loss_dict = criterion(out_net, data)
-        loss_dict['loss'].backward()
+        (loss_dict['loss']*weight[chunks-model.min_F]).backward()
         if clip_max_norm > 0:
             torch.nn.utils.clip_grad_norm_(model.parameters(), clip_max_norm)
         optimizer.step()
@@ -45,18 +50,32 @@ def test_epoch(epoch, dataloader, model, criterion, writer, logger):
     total_images = len(dataloader.dataset)
     
     progress = progressMeter('valid', writer, logger, total_images, epoch, use_pbar=True)
-    
+    weight=torch.tensor([i**2 for i in range(model.min_F, model.F+1)], dtype=torch.float32).cuda()
+    weight=weight/weight.mean(0)
     with torch.no_grad():
         for data in dataloader:
             data = data.cuda()
+
+            B=data.shape[0]
+            snrs=torch.randint(-2, 25, (B,1), device=data.device, dtype=torch.float32)
+            chunks=list(range(model.min_F, model.F+1))
+
+            new_los_dict={}
+            for i in chunks:                
+                out = model(data, snrs, i)
+                loss_dict = criterion(out, data, training=False)
+                
+                loss_dict['PSNR'] = 10 * torch.log10(1/loss_dict['loss'])
+                loss_dict['batch_size'] = len(data)
+                for j in loss_dict.keys():
+                    if j not in new_los_dict:
+                        new_los_dict[j]=weight[i-model.min_F]*loss_dict[j]
+                    else:
+                        new_los_dict[j]+=weight[i-model.min_F]*loss_dict[j]
+            for j in new_los_dict:
+                new_los_dict[j]=new_los_dict[j]/len(chunks)
             
-            out_net = model(data)
-            loss_dict = criterion(out_net, data, training=False)
-            
-            loss_dict['PSNR'] = 10 * torch.log10(1/loss_dict['loss'])
-            loss_dict['batch_size'] = len(data)
-            
-            progress.update(loss_dict)
+            progress.update(new_los_dict)
             progress.verbose_states()
     
     # 이 rate의 평균 loss 기록
@@ -117,7 +136,7 @@ def main(argv):
     logger.info('SUMMARY:\n'+str(summary(model, (1,3,H,W), depth=2,device='cuda', verbose=0)))
 
     # Criterion
-    criterion = QuadResJSCCLoss(model=model,loss_type=config.loss_type)
+    criterion = CustomJSCCLoss(loss_type=config.loss_type)
     
     # Dataset
     cfg_dataset = config.dataset

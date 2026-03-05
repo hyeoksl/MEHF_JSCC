@@ -45,58 +45,7 @@ class AWGNChannel(nn.Module):
         # Add noise
         y = x + n
         return y
-    
-class ChannelLastGroupedLinear(nn.Module):
-    """
-    nn.Linear의 Grouped 버전 (BHWC 레이아웃 전용)
-    nn.Conv2d(..., kernel_size=1, groups=g)와 수학적으로 동일하지만,
-    Permute 없이 BHWC 상태에서 바로 연산합니다.
-    """
-    def __init__(self, in_features, out_features, groups=1, bias=True):
-        super().__init__()
-        assert in_features % groups == 0, "Input dimensions must be divisible by groups."
-        assert out_features % groups == 0, "Output dimensions must be divisible by groups."
-        
-        self.in_features = in_features
-        self.out_features = out_features
-        self.groups = groups
-        
-        # 가중치 형상: (Groups, In_per_group, Out_per_group)
-        self.weight = nn.Parameter(torch.Tensor(groups, in_features // groups, out_features // groups))
-        
-        if bias:
-            self.bias = nn.Parameter(torch.Tensor(out_features))
-        else:
-            self.register_parameter('bias', None)
-            
-        self.reset_parameters()
 
-    def reset_parameters(self):
-        # Kaiming Init (Grouped Linear에 맞게 조정)
-        nn.init.kaiming_uniform_(self.weight, a=5**0.5)
-        if self.bias is not None:
-            fan_in, _ = nn.init._calculate_fan_in_and_fan_out(self.weight)
-            bound = 1 / (fan_in**0.5)
-            nn.init.uniform_(self.bias, -bound, bound)
-
-    def forward(self, x):
-        # x: (..., in_features)
-        # 1. View logic to separate groups
-        # (..., groups, in_per_group)
-        x_shape = x.shape
-        x = x.view(*x_shape[:-1], self.groups, -1)
-        
-        # 2. Einsum을 사용해 그룹별 행렬곱 수행 (가장 효율적)
-        # g: groups, i: in_per_group, o: out_per_group
-        x = torch.einsum('...gi, gio -> ...go', x, self.weight)
-        
-        # 3. Flatten back
-        x = x.reshape(*x_shape[:-1], self.out_features)
-        
-        if self.bias is not None:
-            x = x + self.bias
-        return x
-    
 class resNetBlock(nn.Module):
     """Simple residual block with two 3x3 convolutions.
 
@@ -105,22 +54,20 @@ class resNetBlock(nn.Module):
         out_ch (int): number of output channels
     """
 
-    def __init__(self, in_ch: int):
+    def __init__(self, in_ch: int, groups:int=1):
         super().__init__()
-        self.conv1 = nn.Linear(in_ch,in_ch//2)
+        self.conv1 = nn.Conv2d(in_ch, in_ch//2, 1, groups=groups)
         self.relu = nn.ReLU(inplace=True)
-        self.conv2 = conv3x3(in_ch//2, in_ch//2)
+        self.conv2 = nn.Conv2d(in_ch//2,in_ch//2, 3, 1, 1, groups=groups)
         self.relu2 = nn.ReLU(inplace=True)
-        self.conv3 = nn.Linear(in_ch//2, in_ch)
+        self.conv3 = nn.Conv2d(in_ch//2, in_ch, 1,groups=groups)
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         identity = x # (N, H, W, C)
 
         out = self.conv1(x)
         out = self.relu(out)
-        out = out.permute(0, 3, 1, 2) # (N, H, W, C) -> (N, C, H, W)
         out = self.conv2(out)
-        out = out.permute(0, 2, 3, 1) # (N, C, H, W) -> (N, H, W, C)
         out = self.relu2(out)
         out = self.conv3(out)
 

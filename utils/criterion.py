@@ -13,7 +13,7 @@ class CustomJSCCLoss(nn.Module):
             
     def forward(self, output, target, training=True):
         out = {}
-        out["MSE"] = self.mse(output["x_hat"], target)
+        out["MSE"] = self.mse(output, target)
         
         if self.loss_type == 'MSE':
             out["loss"] = out["MSE"]
@@ -33,7 +33,7 @@ class QuadResJSCCLoss(nn.Module):
             
     def forward(self, output, target, training=True):
         out={}
-        x_hats = output["x_hat"]                 # (B, 3, H, W) F개
+        x_hats = output                 # (B, 3, H, W) F개
         x_hat=torch.stack(x_hats, dim=1)
         B, F, C, H, W = x_hat.shape
         
